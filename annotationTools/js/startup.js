@@ -292,24 +292,24 @@ function InitializeAnnotationTools(tag_button, tag_canvas){
     }
     var html_str = '<div id= "polygonDiv" class="annotatemenu">Polygon<br></br>Tool \
         <button id="polygon" class="labelBtnDraw" type="button" title="Start Polygon" onclick="SetPolygonDrawingMode(false)" > \
-        <img id="polygonModeImg" src="Icons/polygon.png"  width="28" height="38" /> \
+        <img id="polygonModeImg" src="Icons/polygon.png"  width="22" height="30" /> \
         </button> \
         <button id="erase" class="labelBtnDraw" type="button" title="Delete last segment" onclick="main_handler.EraseSegment()" > \
-        <img src="Icons/erase.png"  width="28" height="38" /> \
+        <img src="Icons/erase.png"  width="22" height="30" /> \
         </button> ';
         if (bbox_mode) html_str += ' <button id="bounding_box" class="labelBtnDraw" type="button" title="Start bounding box" onclick="SetPolygonDrawingMode(true)" > \
-        <img src="Icons/bounding.png"  width="28" height="38" /> \
+        <img src="Icons/bounding.png"  width="22" height="30" /> \
         </button> ';
     html_str += '</div>';
 
     if (!video_mode){
       html_str += '<div id= "segmDiv" class="annotatemenu">Mask<br></br>Tool \
         <button id="ScribbleObj" class="labelBtnDraw" type="button" title="Use the red pencil to mark areas inside the object you want to segment" onclick="scribble_canvas.setCurrentDraw(OBJECT_DRAWING)" > \
-        <img src="Icons/object.png" width="28" height="38" /></button> \
+        <img src="Icons/object.png" width="22" height="30" /></button> \
         <button id="ScribbleBg" class="labelBtnDraw" type="button" title="Use the blue pencil to mark areas outside the object" onclick="scribble_canvas.setCurrentDraw(BG_DRAWING)" > \
-        <img src="Icons/background.png" width="28" height="38" /></button> \
+        <img src="Icons/background.png" width="22" height="30" /></button> \
         <button id="ScribbleRubber" class="labelBtnDraw" type="button" title="ScribbleRubber" onclick="scribble_canvas.setCurrentDraw(RUBBER_DRAWING)" > \
-        <img src="Icons/erase.png" width="28" height="38" /> \
+        <img src="Icons/erase.png" width="22" height="30" /> \
         </button><input type="button" class="segbut"  id="donebtn" value="Done" title="Press this button after you are done with the scribbling." onclick="scribble_canvas.segmentImage(1)"/> \
         <p> </p><div id="loadspinner" style="display: none;"><img src="Icons/segment_loader.gif"/> </div></div>';
      
