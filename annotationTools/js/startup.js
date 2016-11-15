@@ -40,6 +40,7 @@ function StartupLabelMe() {
           var anno_file = main_media.GetFileInfo().GetFullName();
           anno_file = 'VLMAnnotations/' + anno_file + '.xml' + '?' + Math.random();
           ReadXML(anno_file,LoadAnnotationSuccess,LoadAnnotation404);
+          
         }
         main_media.GetNewVideo(main_media_onload_helper);
       });
@@ -57,6 +58,7 @@ function StartupLabelMe() {
       var anno_file = main_media.GetFileInfo().GetFullName();
       anno_file = 'Annotations/' + anno_file.substr(0,anno_file.length-4) + '.xml' + '?' + Math.random();
       ReadXML(anno_file,LoadAnnotationSuccess,LoadAnnotation404);
+          
       main_media.GetFileInfo().PreFetchImage();
           };
 
@@ -172,18 +174,23 @@ function SetAllAnnotationsArray() {
   console.time('loop annotated');
   
   console.timeEnd('loop annotated');
+
+    
+    
 }
 
 /** Annotation file does not exist, so load template. */
 function LoadAnnotation404(jqXHR,textStatus,errorThrown) {
   if(jqXHR.status==404) 
     ReadXML(main_media.GetFileInfo().GetTemplatePath(),LoadTemplateSuccess,LoadTemplate404);
+    
   else if (jqXHR.status == 200){
     var resp = jqXHR.responseText;
     var NOT_SAFE_IN_XML_1_0 = /[^\x09\x0A\x0D\x20-\xFF\x85\xA0-\uD7FF\uE000-\uFDCF\uFDE0-\uFFFD]/gm;
     resp =resp.replace(/[\u001a]/gm,'');
     resp = resp.replace(NOT_SAFE_IN_XML_1_0,'');
     LoadAnnotationSuccess(jQuery.parseXML(resp));
+    
   }
   else 
     alert(jqXHR.status);
@@ -215,6 +222,10 @@ function LoadTemplateSuccess(xml) {
 
   // Finish the startup scripts:
   FinishStartup();
+
+  //added by Florian Wirthmüller
+  WriteXML(SubmitXmlUrl,LM_xml,function(){return;});
+    
 }
 
 /** Finish the startup process: */
@@ -267,8 +278,9 @@ function FinishStartup() {
   // Write "finished" messages:
   WriteLogMsg('*done_loading_' + main_media.GetFileInfo().GetImagePath());
   console.log('LabelMe: finished loading');
-
   console.timeEnd('startup');
+    
+    
 }
 
 // Initialize the segmentation tool. This function is called when the field 

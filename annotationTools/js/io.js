@@ -8,6 +8,8 @@ function ReadXML(xml_file,SuccessFunction,ErrorFunction) {
     success: SuccessFunction,
     error: ErrorFunction
   });
+    
+    
 }
 
 function WriteXML(url,xml_data,SuccessFunction,ErrorFunction) {
@@ -25,9 +27,25 @@ function WriteXML(url,xml_data,SuccessFunction,ErrorFunction) {
     contentType: "text/xml",
     dataType: "text",
     success: SuccessFunction,
+    //success: alert("OK"),
     error: function(xhr,ajaxOptions,thrownError) {
       console.log(xhr.status);          
       console.log(thrownError);
     }
   });
+    
+    //added by Florian Wirthmüller
+    $.ajax({
+    type: "POST",
+    data: { XmlContent: sXmlString},
+    context: document.body,
+    //success: alert("VOC_OK"),
+    url: "http://localhost/LabelMeAnnotationTool/annotationTools/php/xml_transform.php",
+    error: function () {
+        alert("!!ERR!!");
+           }
+  });
+                                    
+                                    
+                                    
 }

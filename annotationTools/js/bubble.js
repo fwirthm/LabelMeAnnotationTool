@@ -341,7 +341,7 @@ function HTMLoccludedBox(occluded) {
   }
   
   // the value of the selection is inside a hidden field:
-  html_str += 'Is occluded? <input type="hidden" name="occluded" id="occluded" value="'+occluded+'"/>';
+  html_str += 'Is truncated? <input type="hidden" name="occluded" id="occluded" value="'+occluded+'"/>';
   
   // generate radio button
   if (occluded=='yes') {

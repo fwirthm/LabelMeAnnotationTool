@@ -1,16 +1,13 @@
 <annotation>
-<filename>
-myfile
-</filename>
 <folder>
 mydir
 </folder>
+<filename>
+myfile
+</filename>
 <source>
-<sourceImage>
-The MIT-CSAIL database of objects and scenes
-</sourceImage>
-<sourceAnnotation>
-LabelMe Webtool
-</sourceAnnotation>
+<database>
+Flora Incognita Project Database
+</database>
 </source>
 </annotation>
