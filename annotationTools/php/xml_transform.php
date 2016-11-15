@@ -142,6 +142,8 @@
         $depth = (string)'notPossible';
     }
     
+    $segmented = 0;
+    
     
     //make output
     $myfile = fopen("../../AnnotationsVOC/".(string)$folder."/".(string)$filenameNoType.".xml", "w") or die("Unable to open file!");
@@ -163,9 +165,14 @@
     fwrite($myfile, "<depth>".(string)$depth."</depth>");
     fwrite($myfile, "</size>");
     
-    fwrite($myfile, "<segmented>".(string)'0'."</segmented>");
-    
     foreach ($annotation->object as $obj) {
+        $type=-1;
+        /*contains the type of type of the object:
+         not set yet: -1
+         for a polygon: 0
+         for a bounding box: 1
+         for a mask: 2
+         */
         $deleted = $obj->deleted;
         
         //only active bounding boxes occur in new xml
@@ -173,56 +180,107 @@
         {
             
             $name = $obj->name;
-            $truncated = $obj->occluded;
-            $difficult = $obj->difficult;
             
-            $xmin = (int)100000;
-            $xmax = (int)-100000;
-            $ymin = (int)100000;
-            $ymax = (int)-100000;
-            
-            foreach ($obj->polygon->pt as $p)
+            if ($obj->occluded == 'yes')
             {
-                
-                if ((int)$p->x < $xmin)
-                {
-                    $xmin = (int)$p->x;
-                }
-                elseif ((int)$p->x > $xmax)
-                {
-                    $xmax = (int)$p->x;
-                }
-                
-                if ((int)$p->y < $ymin)
-                {
-                    $ymin = (int)$p->y;
-                }
-                elseif ((int)$p->y > $ymax)
-                {
-                    $ymax = (int)$p->y;
-                }
-                
+                $truncated = 1;
             }
+            else
+            {
+                $truncated = 0;
+            }
+            
+            if ($obj->difficult == 'yes')
+            {
+                $difficult = 1;
+            }
+            else
+            {
+                $difficult = 0;
+            }
+            
+            //check if the object is a bounding box
+            if($obj->type=='bounding_box')
+            {
+                $type = 1;
+            
+                $xmin = (int)100000;
+                $xmax = (int)-100000;
+                $ymin = (int)100000;
+                $ymax = (int)-100000;
+            
+                foreach ($obj->polygon->pt as $p)
+                {
+                
+                    if ((int)$p->x < $xmin)
+                    {
+                        $xmin = (int)$p->x;
+                    }
+                    elseif ((int)$p->x > $xmax)
+                    {
+                        $xmax = (int)$p->x;
+                    }
+                
+                    if ((int)$p->y < $ymin)
+                    {
+                        $ymin = (int)$p->y;
+                    }
+                    elseif ((int)$p->y > $ymax)
+                    {
+                        $ymax = (int)$p->y;
+                    }
+                
+                }
+            }
+            //check if the object is a polygon (and not a bounding box)
+            elseif(isset($obj->polygon))
+            {
+                $type = 0;
+            }
+            //if the object is neither a polygon nor a bounding box it is a segment
+            else
+            {
+                $type = 2;
+            }
+            
+            
             fwrite($myfile, "<object>");
-
         
             fwrite($myfile, "<name>".(string)$name."</name>");
             fwrite($myfile, "<pose>".(string)'Unspecified'."</pose>");
-            fwrite($myfile, "<difficult>".(string)'0'."</difficult>");
             fwrite($myfile, "<truncated>".(string)$truncated."</truncated>");
             fwrite($myfile, "<difficult>".(string)$difficult."</difficult>");
             
-            fwrite($myfile, "<bndbox>");
-            fwrite($myfile, "<xmax>".(string)$xmax."</xmax>");
-            fwrite($myfile, "<xmin>".(string)$xmin."</xmin>");
-            fwrite($myfile, "<ymax>".(string)$ymax."</ymax>");
-            fwrite($myfile, "<ymin>".(string)$ymin."</ymin>");
-            fwrite($myfile, "</bndbox>");
+            if ($type==0)
+            {
+                fwrite($myfile, "<polygon>");
+                //Todo
+                fwrite($myfile, "</polygon>");
+            }
+            
+            if ($type==1)
+            {
+                fwrite($myfile, "<bndbox>");
+                fwrite($myfile, "<xmax>".(string)$xmax."</xmax>");
+                fwrite($myfile, "<xmin>".(string)$xmin."</xmin>");
+                fwrite($myfile, "<ymax>".(string)$ymax."</ymax>");
+                fwrite($myfile, "<ymin>".(string)$ymin."</ymin>");
+                fwrite($myfile, "</bndbox>");
+            }
+            
+            if ($type==2)
+            {
+                $segmented = 1;
+                fwrite($myfile, "<segment>");
+                //Todo
+                fwrite($myfile, "</segment>");
+            }
             
             fwrite($myfile, "</object>");
         }
     }
     
+    fwrite($myfile, "<segmented>".(string)$segmented."</segmented>");
     
     fwrite($myfile, "</annotation>");
 
