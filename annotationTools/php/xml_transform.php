@@ -174,6 +174,7 @@
             
             $name = $obj->name;
             $truncated = $obj->occluded;
+            $difficult = $obj->difficult;
             
             $xmin = (int)100000;
             $xmax = (int)-100000;
@@ -209,6 +210,7 @@
             fwrite($myfile, "<pose>".(string)'Unspecified'."</pose>");
             fwrite($myfile, "<difficult>".(string)'0'."</difficult>");
             fwrite($myfile, "<truncated>".(string)$truncated."</truncated>");
+            fwrite($myfile, "<difficult>".(string)$difficult."</difficult>");
             
             fwrite($myfile, "<bndbox>");
             fwrite($myfile, "<xmax>".(string)$xmax."</xmax>");

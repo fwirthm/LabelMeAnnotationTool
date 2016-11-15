@@ -76,6 +76,10 @@ function handler() {
       	// occlusion field
       	if (document.getElementById('occluded')) new_occluded = RemoveSpecialChars(document.getElementById('occluded').value);
       	else new_occluded = RemoveSpecialChars(adjust_occluded);
+         
+        // difficult field
+        if (document.getElementById('difficult')) new_difficult = RemoveSpecialChars(document.getElementById('difficult').value);
+        else new_difficult = RemoveSpecialChars(adjust_difficult);
       	
       	// attributes field
       	if(document.getElementById('attributes')) new_attributes = RemoveSpecialChars(document.getElementById('attributes').value);
@@ -102,6 +106,7 @@ function handler() {
         
       
       LMsetObjectField(LM_xml, obj_ndx, "occluded", new_occluded);
+      LMsetObjectField(LM_xml, obj_ndx, "difficult", new_difficult);
       
       // Write XML to server:
       WriteXML(SubmitXmlUrl,LM_xml,function(){return;});
@@ -234,6 +239,11 @@ function handler() {
 	// get occlusion field (is the field exists)
 	if (document.getElementById('occluded')) new_occluded = RemoveSpecialChars(document.getElementById('occluded').value);
 	else new_occluded = "";
+          
+    // get difficult field (is the field exists)
+    if (document.getElementById('difficult')) new_difficult = RemoveSpecialChars(document.getElementById('difficult').value);
+    else new_difficult = "";
+          
       }
       
       if((object_choices!='...') && (object_choices.length==1)) {
@@ -285,6 +295,7 @@ function handler() {
       html_str += '<verified>0</verified>';
       if(use_attributes) {
 	html_str += '<occluded>' + new_occluded + '</occluded>';
+    html_str += '<difficult>' + new_difficult + '</difficult>';
 	html_str += '<attributes>' + new_attributes + '</attributes>';
       }
       html_str += '<parts><hasparts></hasparts><ispartof></ispartof></parts>';

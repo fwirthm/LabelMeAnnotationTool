@@ -141,6 +141,7 @@ function StopEditEvent() {
 var adjust_objEnter = '';
 var adjust_attributes;
 var adjust_occluded;
+var adjust_difficult;
 
 /** This function is called when the user clicks 'Adjust Polygon' button */
 function AdjustPolygonButton() {
@@ -163,6 +164,7 @@ function AdjustPolygonButton() {
   adjust_objEnter = document.getElementById('objEnter').value;
   adjust_attributes = document.getElementById('attributes').value;
   adjust_occluded = document.getElementById('occluded').value;
+  adjust_difficult = document.getElementById('difficult').value;
   
   // Close the edit popup bubble:
   CloseEditPopup();

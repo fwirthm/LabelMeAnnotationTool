@@ -208,6 +208,7 @@ function GetPopupFormDraw(scribble_form) {
   
   if(use_attributes) {
     html_str += HTMLoccludedBox("");
+    html_str += HTMLdifficultBox("");
     html_str += "<b>Enter attributes</b><br />";
     html_str += HTMLattributesBox("");
   }
@@ -240,6 +241,7 @@ function GetPopupFormEdit(anno) {
   if(obj_name=="") obj_name = "?";
   var attributes = LMgetObjectField(LM_xml,anno.anno_id,'attributes');
   var occluded = LMgetObjectField(LM_xml,anno.anno_id,'occluded');
+  var difficult = LMgetObjectField(LM_xml,anno.anno_id,'difficult');
   var parts = LMgetObjectField(LM_xml, anno.anno_id, 'parts');
   
   html_str = "<b>Enter object name</b><br />"; 
@@ -247,6 +249,7 @@ function GetPopupFormEdit(anno) {
   
   if(use_attributes) {
     html_str += HTMLoccludedBox(occluded);
+    html_str += HTMLdifficultBox(difficult);
     html_str += "<b>Enter attributes</b><br />";
     html_str += HTMLattributesBox(attributes);
   }
@@ -355,6 +358,33 @@ function HTMLoccludedBox(occluded) {
   html_str += '<br />';
   
   return html_str;
+}
+
+// is the object difficult?
+function HTMLdifficultBox(difficult) {
+    var html_str="";
+    
+    // by default, the value of difficult is "no"
+    if (!(difficult=="no" || difficult=="yes")) {
+        difficult="no";
+    }
+    
+    // the value of the selection is inside a hidden field:
+    html_str += 'Is difficult? <input type="hidden" name="difficult" id="difficult" value="'+difficult+'"/>';
+    
+    // generate radio button
+    if (difficult=='yes') {
+        html_str += '<input type="radio" name="rbdifficult" id="rbdifficult" value="yes" checked="yes" onclick="document.getElementById(\'difficult\').value=\'yes\';" />yes';
+        html_str += '<input type="radio" name="rbdifficult" id="rbdifficult" value="no"  onclick="document.getElementById(\'difficult\').value=\'no\';" />no';
+    }
+    else {
+        html_str += '<input type="radio" name="rbdifficult" id="rbdifficult" value="yes"  onclick="document.getElementById(\'difficult\').value=\'yes\';" />yes';
+        html_str += '<input type="radio" name="rbdifficult" id="rbdifficult" value="no" checked="yes"  onclick="document.getElementById(\'difficult\').value=\'no\';" />no';
+    }
+    
+    html_str += '<br />';
+    
+    return html_str;
 }
 
 // Boxes to enter attributes

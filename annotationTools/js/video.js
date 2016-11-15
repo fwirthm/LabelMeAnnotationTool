@@ -553,6 +553,9 @@ function video(id) {
         if (document.getElementById('occluded')) new_occluded = RemoveSpecialChars(document.getElementById('occluded').value);
         else new_occluded = RemoveSpecialChars(adjust_occluded);
         
+        if (document.getElementById('difficult')) new_difficult = RemoveSpecialChars(document.getElementById('difficult').value);
+        else new_difficult = RemoveSpecialChars(adjust_difficult);
+        
         // attributes field
         if(document.getElementById('attributes')) new_attributes = RemoveSpecialChars(document.getElementById('attributes').value);
         else new_attributes = RemoveSpecialChars(adjust_attributes);
@@ -575,6 +578,7 @@ function video(id) {
 
       LMsetObjectField(LM_xml, obj_ndx, "attributes", new_attributes);
       LMsetObjectField(LM_xml, obj_ndx, "occluded", new_occluded);
+      LMsetObjectField(LM_xml, obj_ndx, "difficult", new_difficult);
       WriteXML(SubmitXmlUrl,LM_xml,function(){return;});
     
       StopEditEvent();
@@ -594,6 +598,11 @@ function video(id) {
             // get occlusion field (is the field exists)
             if (document.getElementById('occluded')) new_occluded = RemoveSpecialChars(document.getElementById('occluded').value);
             else new_occluded = "";
+            
+            // get difficult field (is the field exists)
+            if (document.getElementById('difficult')) new_difficult = RemoveSpecialChars(document.getElementById('difficult').value);
+            else new_difficult = "";
+            
         }
         if((object_choices!='...') && (object_choices.length==1)) {
             nn = RemoveSpecialChars(object_choices[0]);
@@ -636,6 +645,7 @@ function video(id) {
         html_str += '<name>' + nn + '</name>';
         if(use_attributes) {
             html_str += '<occluded>' + new_occluded + '</occluded>';
+            html_str += '<difficult>' + new_difficult + '</difficult>';
             html_str += '<attributes>' + new_attributes + '</attributes>';
         }
         html_str += '<parts><hasparts></hasparts><ispartof></ispartof></parts>';
