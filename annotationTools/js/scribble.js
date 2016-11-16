@@ -721,6 +721,7 @@ function EditBubbleEditScribble(){
   active_canvas  = DRAW_CANVAS;
   main_handler.objEnter = document.getElementById('objEnter').value;
   main_handler.attributes = document.getElementById('attributes').value;
+  main_handler.pose = document.getElementById('pose').value;
   main_handler.occluded = document.getElementById('occluded').value;
   main_handler.difficult = document.getElementById('difficult').value;
   

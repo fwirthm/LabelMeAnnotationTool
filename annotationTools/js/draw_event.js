@@ -181,6 +181,7 @@ function DrawCanvasClosePolygon() {
     html_str += HTMLobjectBox("");
     
     if(use_attributes) {
+      html_str += HTMLposeBox("");
       html_str += HTMLoccludedBox("");
       html_str += HTMLdifficultBox("");
       html_str += "<b>Enter attributes</b><br />";

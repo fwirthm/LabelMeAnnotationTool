@@ -183,11 +183,11 @@
             
             if ($obj->occluded == 'yes')
             {
-                $truncated = 1;
+                $occluded = 1;
             }
             else
             {
-                $truncated = 0;
+                $occluded = 0;
             }
             
             if ($obj->difficult == 'yes')
@@ -198,6 +198,9 @@
             {
                 $difficult = 0;
             }
+            
+            $pose = $obj->pose;
+            
             
             //check if the object is a bounding box
             if($obj->type=='bounding_box')
@@ -253,8 +256,8 @@
             fwrite($myfile, "<object>");
         
             fwrite($myfile, "<name>".(string)$name."</name>");
-            fwrite($myfile, "<pose>".(string)'Unspecified'."</pose>");
-            fwrite($myfile, "<truncated>".(string)$truncated."</truncated>");
+            fwrite($myfile, "<pose>".ucfirst ((string)$pose)."</pose>");
+            fwrite($myfile, "<occluded>".(string)$occluded."</occluded>");
             fwrite($myfile, "<difficult>".(string)$difficult."</difficult>");
             
             if ($type==0)

@@ -207,6 +207,7 @@ function GetPopupFormDraw(scribble_form) {
   html_str += HTMLobjectBox("");
   
   if(use_attributes) {
+    html_str += HTMLposeBox("");
     html_str += HTMLoccludedBox("");
     html_str += HTMLdifficultBox("");
     html_str += "<b>Enter attributes</b><br />";
@@ -240,6 +241,7 @@ function GetPopupFormEdit(anno) {
   var obj_name = LMgetObjectField(LM_xml,anno.anno_id,'name');
   if(obj_name=="") obj_name = "?";
   var attributes = LMgetObjectField(LM_xml,anno.anno_id,'attributes');
+  var pose = LMgetObjectField(LM_xml,anno.anno_id,'pose');
   var occluded = LMgetObjectField(LM_xml,anno.anno_id,'occluded');
   var difficult = LMgetObjectField(LM_xml,anno.anno_id,'difficult');
   var parts = LMgetObjectField(LM_xml, anno.anno_id, 'parts');
@@ -248,6 +250,7 @@ function GetPopupFormEdit(anno) {
   html_str += HTMLobjectBox(obj_name);
   
   if(use_attributes) {
+    html_str += HTMLposeBox(pose);
     html_str += HTMLoccludedBox(occluded);
     html_str += HTMLdifficultBox(difficult);
     html_str += "<b>Enter attributes</b><br />";
@@ -344,7 +347,7 @@ function HTMLoccludedBox(occluded) {
   }
   
   // the value of the selection is inside a hidden field:
-  html_str += 'Is truncated? <input type="hidden" name="occluded" id="occluded" value="'+occluded+'"/>';
+  html_str += 'Is the object occluded? <br /><input type="hidden" name="occluded" id="occluded" value="'+occluded+'"/>';
   
   // generate radio button
   if (occluded=='yes') {
@@ -370,7 +373,7 @@ function HTMLdifficultBox(difficult) {
     }
     
     // the value of the selection is inside a hidden field:
-    html_str += 'Is difficult? <input type="hidden" name="difficult" id="difficult" value="'+difficult+'"/>';
+    html_str += 'Is the object difficult?<br /> <input type="hidden" name="difficult" id="difficult" value="'+difficult+'"/>';
     
     // generate radio button
     if (difficult=='yes') {
@@ -380,6 +383,60 @@ function HTMLdifficultBox(difficult) {
     else {
         html_str += '<input type="radio" name="rbdifficult" id="rbdifficult" value="yes"  onclick="document.getElementById(\'difficult\').value=\'yes\';" />yes';
         html_str += '<input type="radio" name="rbdifficult" id="rbdifficult" value="no" checked="yes"  onclick="document.getElementById(\'difficult\').value=\'no\';" />no';
+    }
+    
+    html_str += '<br />';
+    
+    return html_str;
+}
+
+// what is the objects pose?
+function HTMLposeBox(pose) {
+    var html_str="";
+    
+    // by default, the value of pose is "unspecified"
+    if (!(pose=="unspecified" || pose=="frontal"|| pose=="left"|| pose=="right"|| pose=="rear")) {
+        pose="unspecified";
+    }
+    
+    // the value of the selection is inside a hidden field:
+    html_str += 'What is the objects pose? <br /><input type="hidden" name="pose" id="pose" value="'+pose+'"/>';
+    
+    if (pose=='left') {
+        html_str += '<input type="radio" name="rbpose" id="rbpose" value="left" checked="yes" onclick="document.getElementById(\'pose\').value=\'left\';" />left';
+        html_str += '<input type="radio" name="rbpose" id="rbpose" value="frontal" onclick="document.getElementById(\'pose\').value=\'frontal\';" />frontal';
+        html_str += '<input type="radio" name="rbpose" id="rbpose" value="unspecified" onclick="document.getElementById(\'pose\').value=\'unspecified\';" />unspecified';
+        html_str += '<input type="radio" name="rbpose" id="rbpose" value="rear" onclick="document.getElementById(\'pose\').value=\'rear\';" />rear';
+        html_str += '<input type="radio" name="rbpose" id="rbpose" value="right" onclick="document.getElementById(\'pose\').value=\'right\';" />right';
+    }
+    
+    else if (pose=='frontal') {
+        html_str += '<input type="radio" name="rbpose" id="rbpose" value="left" onclick="document.getElementById(\'pose\').value=\'left\';" />left';
+        html_str += '<input type="radio" name="rbpose" id="rbpose" value="frontal" checked="yes" onclick="document.getElementById(\'pose\').value=\'frontal\';" />frontal';
+        html_str += '<input type="radio" name="rbpose" id="rbpose" value="unspecified" onclick="document.getElementById(\'pose\').value=\'unspecified\';" />unspecified';
+        html_str += '<input type="radio" name="rbpose" id="rbpose" value="rear" onclick="document.getElementById(\'pose\').value=\'rear\';" />rear';
+        html_str += '<input type="radio" name="rbpose" id="rbpose" value="right" onclick="document.getElementById(\'pose\').value=\'right\';" />right';
+    }
+    else if (pose=='unspecified') {
+        html_str += '<input type="radio" name="rbpose" id="rbpose" value="left" onclick="document.getElementById(\'pose\').value=\'left\';" />left';
+        html_str += '<input type="radio" name="rbpose" id="rbpose" value="frontal" onclick="document.getElementById(\'pose\').value=\'frontal\';" />frontal';
+        html_str += '<input type="radio" name="rbpose" id="rbpose" value="unspecified" checked="yes" onclick="document.getElementById(\'pose\').value=\'unspecified\';" />unspecified';
+        html_str += '<input type="radio" name="rbpose" id="rbpose" value="rear" onclick="document.getElementById(\'pose\').value=\'rear\';" />rear';
+        html_str += '<input type="radio" name="rbpose" id="rbpose" value="right" onclick="document.getElementById(\'pose\').value=\'right\';" />right';
+    }
+   else if (pose=='rear') {
+        html_str += '<input type="radio" name="rbpose" id="rbpose" value="left" onclick="document.getElementById(\'pose\').value=\'left\';" />left';
+        html_str += '<input type="radio" name="rbpose" id="rbpose" value="frontal" onclick="document.getElementById(\'pose\').value=\'frontal\';" />frontal';
+        html_str += '<input type="radio" name="rbpose" id="rbpose" value="unspecified" onclick="document.getElementById(\'pose\').value=\'unspecified\';" />unspecified';
+        html_str += '<input type="radio" name="rbpose" id="rbpose" value="rear" checked="yes" onclick="document.getElementById(\'pose\').value=\'rear\';" />rear';
+        html_str += '<input type="radio" name="rbpose" id="rbpose" value="right" onclick="document.getElementById(\'pose\').value=\'right\';" />right';
+    }
+    else if (pose=='right') {
+        html_str += '<input type="radio" name="rbpose" id="rbpose" value="left" onclick="document.getElementById(\'pose\').value=\'left\';" />left';
+        html_str += '<input type="radio" name="rbpose" id="rbpose" value="frontal" onclick="document.getElementById(\'pose\').value=\'frontal\';" />frontal';
+        html_str += '<input type="radio" name="rbpose" id="rbpose" value="unspecified" onclick="document.getElementById(\'pose\').value=\'unspecified\';" />unspecified';
+        html_str += '<input type="radio" name="rbpose" id="rbpose" value="rear" onclick="document.getElementById(\'pose\').value=\'rear\';" />rear';
+        html_str += '<input type="radio" name="rbpose" id="rbpose" value="right" checked="yes" onclick="document.getElementById(\'pose\').value=\'right\';" />right';
     }
     
     html_str += '<br />';

@@ -140,6 +140,7 @@ function StopEditEvent() {
 
 var adjust_objEnter = '';
 var adjust_attributes;
+var adjust_pose;
 var adjust_occluded;
 var adjust_difficult;
 
@@ -163,6 +164,7 @@ function AdjustPolygonButton() {
   }
   adjust_objEnter = document.getElementById('objEnter').value;
   adjust_attributes = document.getElementById('attributes').value;
+  adjust_pose = document.getElementById('pose').value;
   adjust_occluded = document.getElementById('occluded').value;
   adjust_difficult = document.getElementById('difficult').value;
   

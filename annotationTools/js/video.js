@@ -549,10 +549,15 @@ function video(id) {
       }
       
       if (use_attributes) {
+        //pose field
+        if (document.getElementById('pose')) new_pose = RemoveSpecialChars(document.getElementById('pose').value);
+        else new_pose = RemoveSpecialChars(adjust_pose);
+          
         // occlusion field
         if (document.getElementById('occluded')) new_occluded = RemoveSpecialChars(document.getElementById('occluded').value);
         else new_occluded = RemoveSpecialChars(adjust_occluded);
         
+        //difficult field
         if (document.getElementById('difficult')) new_difficult = RemoveSpecialChars(document.getElementById('difficult').value);
         else new_difficult = RemoveSpecialChars(adjust_difficult);
         
@@ -577,6 +582,7 @@ function video(id) {
       // Insert attributes (and create field if it is not there):
 
       LMsetObjectField(LM_xml, obj_ndx, "attributes", new_attributes);
+      LMsetObjectField(LM_xml, obj_ndx, "pose", new_pose);
       LMsetObjectField(LM_xml, obj_ndx, "occluded", new_occluded);
       LMsetObjectField(LM_xml, obj_ndx, "difficult", new_difficult);
       WriteXML(SubmitXmlUrl,LM_xml,function(){return;});
@@ -595,11 +601,15 @@ function video(id) {
             if(document.getElementById('attributes')) new_attributes = RemoveSpecialChars(document.getElementById('attributes').value);
             else new_attributes = "";
             
-            // get occlusion field (is the field exists)
+            // get pose field (if the field exists)
+            if (document.getElementById('pose')) new_pose = RemoveSpecialChars(document.getElementById('pose').value);
+            else new_pose = "";
+            
+            // get occlusion field (if the field exists)
             if (document.getElementById('occluded')) new_occluded = RemoveSpecialChars(document.getElementById('occluded').value);
             else new_occluded = "";
             
-            // get difficult field (is the field exists)
+            // get difficult field (if the field exists)
             if (document.getElementById('difficult')) new_difficult = RemoveSpecialChars(document.getElementById('difficult').value);
             else new_difficult = "";
             
@@ -644,6 +654,7 @@ function video(id) {
         var html_str = '<object>';
         html_str += '<name>' + nn + '</name>';
         if(use_attributes) {
+            html_str += '<pose>' + new_pose + '</pose>';
             html_str += '<occluded>' + new_occluded + '</occluded>';
             html_str += '<difficult>' + new_difficult + '</difficult>';
             html_str += '<attributes>' + new_attributes + '</attributes>';
