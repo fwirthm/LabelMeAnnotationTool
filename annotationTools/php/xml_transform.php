@@ -241,6 +241,12 @@
             else
             {
                 $type = 2;
+                $xmin= $obj->segm->box->xmin;
+                $xmax= $obj->segm->box->xmax;
+                $ymin= $obj->segm->box->ymin;
+                $ymax= $obj->segm->box->ymax;
+                
+                $mask= $obj->segm->mask;
             }
             
             
@@ -258,7 +264,7 @@
                 fwrite($myfile, "</polygon>");
             }
             
-            if ($type==1)
+            if ($type==1 || $type==2)
             {
                 fwrite($myfile, "<bndbox>");
                 fwrite($myfile, "<xmax>".(string)$xmax."</xmax>");
@@ -267,14 +273,11 @@
                 fwrite($myfile, "<ymin>".(string)$ymin."</ymin>");
                 fwrite($myfile, "</bndbox>");
             }
-            
             if ($type==2)
             {
-                $segmented = 1;
-                fwrite($myfile, "<segment>");
-                //Todo
-                fwrite($myfile, "</segment>");
+                fwrite($myfile, "<mask>".(string)$mask."</mask>");
             }
+            
             
             fwrite($myfile, "</object>");
         }
