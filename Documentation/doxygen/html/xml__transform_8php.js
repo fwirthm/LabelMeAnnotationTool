@@ -11,9 +11,8 @@ var xml__transform_8php =
     [ "$height", "xml__transform_8php.html#a2c265bba1724371bb03e6901297c30b2", null ],
     [ "$imgSize", "xml__transform_8php.html#a86010fdfd40bbb8800d425d19a4dc070", null ],
     [ "$imgSrc", "xml__transform_8php.html#a7851e33837d856eee5c6f35f717b57c2", null ],
-    [ "$myfile", "xml__transform_8php.html#a6257f8f380de75814e5c2f33e3520c83", null ],
-    [ "$segmented", "xml__transform_8php.html#a0e05608cfd6f9e725b66fccc27366c50", null ],
+    [ "$outputFile", "xml__transform_8php.html#ad936d9f60325793d1fb7bc155bb36607", null ],
+    [ "$segmented", "xml__transform_8php.html#a91acf9699591cf36b026a18575f7d561", null ],
     [ "$width", "xml__transform_8php.html#a5795120b4b324bc4ca83f1e6fdce7d57", null ],
-    [ "$XmlContent", "xml__transform_8php.html#a201030ff08a40ea41930049334f404f6", null ],
-    [ "try", "xml__transform_8php.html#abe4cc9788f52e49485473dc699537388", null ]
+    [ "$XmlContent", "xml__transform_8php.html#a201030ff08a40ea41930049334f404f6", null ]
 ];

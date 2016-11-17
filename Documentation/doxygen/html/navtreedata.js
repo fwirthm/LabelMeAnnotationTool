@@ -1,6 +1,10 @@
 var NAVTREE =
 [
   [ "LabelMeAnnotationTool", "index.html", [
+    [ "LabelMeAnnotationTool Index Page", "index.html", [
+      [ "Introduction", "index.html#intro_sec", null ]
+    ] ],
+    [ "Todo List", "todo.html", null ],
     [ "Files", null, [
       [ "File List", "files.html", "files" ],
       [ "Globals", "globals.html", [

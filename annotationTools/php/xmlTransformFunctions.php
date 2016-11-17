@@ -96,8 +96,11 @@
     }
     
     /**
-     * returns the size of the image which is specified by folder and flename.
-     * @param[out] $imgSize size of the image which is specified in the given parameters.
+     * returns the size of the image which is specified by folder and filename.
+     * @param[out] $imgSize array containing the size of the image which is specified in the given parameters:
+     * Index 0 = width;
+     * Index 1 = height;
+     * Index 2 = depth if this parameter is accessible for the type of the image
      * @param[in]  $folder  folder which contains the image.
      * @param[in]  $filename  filename of the image.
      */

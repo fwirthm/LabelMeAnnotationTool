@@ -7,66 +7,100 @@
      * @details if the function WriteXML() (specified in io.js) is called, this script will also be called
      */
     
+    /**********************************
     //include necessary function definitions
+    *********************************/
     Include ('xmlTransformFunctions.php');
     
-    // fetch parameter which containes the xml string
+    /**********************************
+    fetch parameter which containes the xml string
+    *********************************/
+    /** contains the xml string which is specified if the Ajax request (in WriteXML()) is started */
     $XmlContent = $_POST['XmlContent'];
     
+    /** contains a simpleXMLElemnet which is easier to acces */
     $annotation = new SimpleXMLElement($XmlContent);
     
-    
-    //collect parameters
+    /**********************************
+     collect parameters of the image
+     *********************************/
     
     // get filename and filename without type
+    /** contains the name of the image file to which the xml belongs*/
     $filename = getFilename($XmlContent);
+    /** array which contains the filename and the type ending*/
     $array_file = explode(".",$filename);
+    
+    /** contains the name of the image file to which the xml belongs without the type ending*/
     $filenameNoType = $array_file[0];
+    
+    /** contains the type ending of the image file to which the xml belongs*/
     $fileType = $array_file[1];
     
     // get folder
+    /** contains the folder of the image file to which the xml belongs*/
     $folder = getFolder($XmlContent);
     
     //get source
+    /** contains the database of the image file to which the xml belongs*/
     $database = getDatabase ($XmlContent);
+    /** contains the source of the last annotation/editor*/
     $annoSrc = getAnnoSrc ($XmlContent);
+    /** contains the source of the image
+     * @todo load the source of the image from the mysql database and write it in the xml
+     */
     $imgSrc = getImgSrc ($XmlContent);
     
     //get imageSize
+    /** contains an array with the sizes of the image*/
     $imgSize = getImgSize ($folder, $filename);
+    /** contains the width of the image*/
     $width = $imgSize[0];
+    /** contains the height of the image*/
     $height = $imgSize[1];
+
+    /// @cond excludes try from the documentation
     try {
         $depth = $imgSize[channels];
     } catch (Exception $e) {
         $depth = (string)'notPossible';
     }
+    /// @endcond
     
+    /** contains if the  there is an segmentation file belonging to the image*/
     $segmented = 0;
     
     
-    //make output
-    $myfile = fopen("../../AnnotationsVOC/".(string)$folder."/".(string)$filenameNoType.".xml", "w") or die("Unable to open file!");
+    /**********************************
+     construct output of the image parameters
+     *********************************/
     
-    fwrite($myfile, "<annotation>");
-    fwrite($myfile, "<folder>".(string)$folder."</folder>");
-    fwrite($myfile, "<filename>".(string)$filename."</filename>");
+    /** contains the filehandler for the output file*/
+    $outputFile = fopen("../../AnnotationsVOC/".(string)$folder."/".(string)$filenameNoType.".xml", "w") or die("Unable to open file!");
     
-    fwrite($myfile, "<source>");
-    fwrite($myfile, "<database>".(string)$database."</database>");
-    fwrite($myfile, "<annotation>".(string)$annoSrc."</annotation>");
-    fwrite($myfile, "<image>".(string)$imgSrc."</image>");
-    fwrite($myfile, "</source>");
+    fwrite($outputFile, "<annotation>");
+    fwrite($outputFile, "<folder>".(string)$folder."</folder>");
+    fwrite($outputFile, "<filename>".(string)$filename."</filename>");
     
-    
-    fwrite($myfile, "<size>");
-    fwrite($myfile, "<width>".(string)$width."</width>");
-    fwrite($myfile, "<height>".(string)$height."</height>");
-    fwrite($myfile, "<depth>".(string)$depth."</depth>");
-    fwrite($myfile, "</size>");
+    fwrite($outputFile, "<source>");
+    fwrite($outputFile, "<database>".(string)$database."</database>");
+    fwrite($outputFile, "<annotation>".(string)$annoSrc."</annotation>");
+    fwrite($outputFile, "<image>".(string)$imgSrc."</image>");
+    fwrite($outputFile, "</source>");
     
     
-    //collect parameters of all annotated objects
+    fwrite($outputFile, "<size>");
+    fwrite($outputFile, "<width>".(string)$width."</width>");
+    fwrite($outputFile, "<height>".(string)$height."</height>");
+    fwrite($outputFile, "<depth>".(string)$depth."</depth>");
+    fwrite($outputFile, "</size>");
+    
+    
+    
+    /**********************************
+     collect and write parameters of all annotated objects
+     *********************************/
+    
     foreach ($annotation->object as $obj) {
         $type=-1;
         /*contains the type of the object:
@@ -76,9 +110,10 @@
          for a mask: 2
          */
         
+        /** contains if the actual object is a obsolet one*/
         $deleted = $obj->deleted;
         
-        //only active bounding boxes occur in new xml
+        //only active bounding boxes occur in the new xml
         if ($deleted < 1)
         {
             
@@ -173,45 +208,42 @@
                 $mask= $obj->segm->mask;
             }
             
-            
-            
-            
             //write object parameters to xml
-            fwrite($myfile, "<object>");
-            fwrite($myfile, "<name>".(string)$name."</name>");
-            fwrite($myfile, "<pose>".ucfirst ((string)$pose)."</pose>");
-            fwrite($myfile, "<occluded>".(string)$occluded."</occluded>");
-            fwrite($myfile, "<truncated>".(string)$truncated."</truncated>");
-            fwrite($myfile, "<difficult>".(string)$difficult."</difficult>");
+            fwrite($outputFile, "<object>");
+            fwrite($outputFile, "<name>".(string)$name."</name>");
+            fwrite($outputFile, "<pose>".ucfirst ((string)$pose)."</pose>");
+            fwrite($outputFile, "<occluded>".(string)$occluded."</occluded>");
+            fwrite($outputFile, "<truncated>".(string)$truncated."</truncated>");
+            fwrite($outputFile, "<difficult>".(string)$difficult."</difficult>");
             
             if ($type==0)
             {
-                fwrite($myfile, "<polygon>");
+                fwrite($outputFile, "<polygon>");
                 //Todo
-                fwrite($myfile, "</polygon>");
+                fwrite($outputFile, "</polygon>");
             }
             
             if ($type==1 || $type==2)
             {
-                fwrite($myfile, "<bndbox>");
-                fwrite($myfile, "<xmax>".(string)$xmax."</xmax>");
-                fwrite($myfile, "<xmin>".(string)$xmin."</xmin>");
-                fwrite($myfile, "<ymax>".(string)$ymax."</ymax>");
-                fwrite($myfile, "<ymin>".(string)$ymin."</ymin>");
-                fwrite($myfile, "</bndbox>");
+                fwrite($outputFile, "<bndbox>");
+                fwrite($outputFile, "<xmax>".(string)$xmax."</xmax>");
+                fwrite($outputFile, "<xmin>".(string)$xmin."</xmin>");
+                fwrite($outputFile, "<ymax>".(string)$ymax."</ymax>");
+                fwrite($outputFile, "<ymin>".(string)$ymin."</ymin>");
+                fwrite($outputFile, "</bndbox>");
             }
             if ($type==2)
             {
-                fwrite($myfile, "<mask>".(string)$mask."</mask>");
+                fwrite($outputFile, "<mask>".(string)$mask."</mask>");
             }
             
-            fwrite($myfile, "</object>");
+            fwrite($outputFile, "</object>");
         }
     }
     
-    fwrite($myfile, "<segmented>".(string)$segmented."</segmented>");
+    fwrite($outputFile, "<segmented>".(string)$segmented."</segmented>");
     
-    fwrite($myfile, "</annotation>");
+    fwrite($outputFile, "</annotation>");
 
-    fclose($myfile);
+    fclose($outputFile);
     ?>

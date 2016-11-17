@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['saveimage_2ephp',['saveimage.php',['../saveimage_8php.html',1,'']]]
+  ['getpackfile_2ephp',['getpackfile.php',['../getpackfile_8php.html',1,'']]],
+  ['globalvariables_2ephp',['globalvariables.php',['../globalvariables_8php.html',1,'']]]
 ];

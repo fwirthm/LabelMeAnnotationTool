@@ -118,12 +118,10 @@ Variables</h2></td></tr>
 <tr class="separator:a5795120b4b324bc4ca83f1e6fdce7d57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c265bba1724371bb03e6901297c30b2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xml__transform_8php.html#a2c265bba1724371bb03e6901297c30b2">$height</a> = $imgSize[1]</td></tr>
 <tr class="separator:a2c265bba1724371bb03e6901297c30b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe4cc9788f52e49485473dc699537388"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xml__transform_8php.html#abe4cc9788f52e49485473dc699537388">try</a></td></tr>
-<tr class="separator:abe4cc9788f52e49485473dc699537388"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e05608cfd6f9e725b66fccc27366c50"><td class="memItemLeft" align="right" valign="top">catch(Exception $e)&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xml__transform_8php.html#a0e05608cfd6f9e725b66fccc27366c50">$segmented</a> = 0</td></tr>
-<tr class="separator:a0e05608cfd6f9e725b66fccc27366c50"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6257f8f380de75814e5c2f33e3520c83"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xml__transform_8php.html#a6257f8f380de75814e5c2f33e3520c83">$myfile</a> = fopen(&quot;../../AnnotationsVOC/&quot;.(string)$folder.&quot;/&quot;.(string)$filenameNoType.&quot;.xml&quot;, &quot;w&quot;) or die(&quot;Unable to open file!&quot;)</td></tr>
-<tr class="separator:a6257f8f380de75814e5c2f33e3520c83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91acf9699591cf36b026a18575f7d561"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xml__transform_8php.html#a91acf9699591cf36b026a18575f7d561">$segmented</a> = 0</td></tr>
+<tr class="separator:a91acf9699591cf36b026a18575f7d561"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad936d9f60325793d1fb7bc155bb36607"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xml__transform_8php.html#ad936d9f60325793d1fb7bc155bb36607">$outputFile</a> = fopen(&quot;../../AnnotationsVOC/&quot;.(string)$folder.&quot;/&quot;.(string)$filenameNoType.&quot;.xml&quot;, &quot;w&quot;) or die(&quot;Unable to open file!&quot;)</td></tr>
+<tr class="separator:ad936d9f60325793d1fb7bc155bb36607"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Script which generates a PASCAL VOC conform version (copy) of the xml files containing the annotations. </p>
@@ -142,6 +140,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>contains the source of the last annotation/editor </p>
 
 </div>
 </div>
@@ -156,6 +155,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>contains a simpleXMLElemnet which is easier to acces </p>
 
 </div>
 </div>
@@ -170,6 +170,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>array which contains the filename and the type ending </p>
 
 </div>
 </div>
@@ -184,6 +185,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>contains the database of the image file to which the xml belongs </p>
 
 </div>
 </div>
@@ -198,6 +200,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>contains the name of the image file to which the xml belongs </p>
 
 </div>
 </div>
@@ -212,6 +215,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>contains the name of the image file to which the xml belongs without the type ending </p>
 
 </div>
 </div>
@@ -226,6 +230,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>contains the type ending of the image file to which the xml belongs </p>
 
 </div>
 </div>
@@ -240,6 +245,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>contains the folder of the image file to which the xml belongs </p>
 
 </div>
 </div>
@@ -254,6 +260,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>contains the height of the image </p>
 
 </div>
 </div>
@@ -268,6 +275,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>contains an array with the sizes of the image </p>
 
 </div>
 </div>
@@ -282,34 +290,37 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>contains the source of the image </p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>load the source of the image from the mysql database and write it in the xml </dd></dl>
 
 </div>
 </div>
-<a id="a6257f8f380de75814e5c2f33e3520c83"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6257f8f380de75814e5c2f33e3520c83">&sect;&nbsp;</a></span>$myfile</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">$myfile = fopen(&quot;../../AnnotationsVOC/&quot;.(string)$folder.&quot;/&quot;.(string)$filenameNoType.&quot;.xml&quot;, &quot;w&quot;) or die(&quot;Unable to open file!&quot;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a0e05608cfd6f9e725b66fccc27366c50"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e05608cfd6f9e725b66fccc27366c50">&sect;&nbsp;</a></span>$segmented</h2>
+<a id="ad936d9f60325793d1fb7bc155bb36607"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad936d9f60325793d1fb7bc155bb36607">&sect;&nbsp;</a></span>$outputFile</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">catch (Exception $e) $segmented = 0</td>
+          <td class="memname">$outputFile = fopen(&quot;../../AnnotationsVOC/&quot;.(string)$folder.&quot;/&quot;.(string)$filenameNoType.&quot;.xml&quot;, &quot;w&quot;) or die(&quot;Unable to open file!&quot;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>contains the filehandler for the output file </p>
+
+</div>
+</div>
+<a id="a91acf9699591cf36b026a18575f7d561"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91acf9699591cf36b026a18575f7d561">&sect;&nbsp;</a></span>$segmented</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">$segmented = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>contains if the there is an segmentation file belonging to the image </p>
 
 </div>
 </div>
@@ -324,6 +335,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>contains the width of the image </p>
 
 </div>
 </div>
@@ -338,22 +350,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>contains the xml string which is specified if the Ajax request (in WriteXML()) is started </p>
 
-</div>
-</div>
-<a id="abe4cc9788f52e49485473dc699537388"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abe4cc9788f52e49485473dc699537388">&sect;&nbsp;</a></span>try</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">try</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">{</div><div class="line">        $depth = <a class="code" href="xml__transform_8php.html#a86010fdfd40bbb8800d425d19a4dc070">$imgSize</a>[channels]</div><div class="ttc" id="xml__transform_8php_html_a86010fdfd40bbb8800d425d19a4dc070"><div class="ttname"><a href="xml__transform_8php.html#a86010fdfd40bbb8800d425d19a4dc070">$imgSize</a></div><div class="ttdeci">$imgSize</div><div class="ttdef"><b>Definition:</b> xml_transform.php:37</div></div>
-</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
