@@ -2912,3 +2912,26 @@
 17-Nov-2016 12:10:02 example_folder img1 1 2 ::1  s 2 t2 cpts_not_modified 0 0
 17-Nov-2016 12:10:17 ::1 *What_is_this_object_query
 17-Nov-2016 12:10:18 example_folder img1 2 3 ::1  s 3 t3 cpts_not_modified 0 0
+17-Nov-2016 12:14:58 ::1 *Browser_Information Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+17-Nov-2016 12:14:58 ::1 *start_loading
+17-Nov-2016 12:14:59 ::1 *done_loading_Images/example_folder/img1.jpg
+17-Nov-2016 13:24:56 ::1 *Browser_Information Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+17-Nov-2016 13:24:56 ::1 *start_loading
+17-Nov-2016 13:24:56 ::1 *done_loading_Images/example_folder/img1.jpg
+17-Nov-2016 13:24:58 ::1 *start_polygon
+17-Nov-2016 13:24:59 ::1 *What_is_this_object_query
+17-Nov-2016 13:24:59 example_folder img1 3 4 ::1  sa 1 t3 cpts_not_modified 0 0
+17-Nov-2016 13:25:25 ::1 *start_loading
+17-Nov-2016 13:25:25 ::1 *Browser_Information Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+17-Nov-2016 13:25:25 ::1 *done_loading_Images/example_folder/img1.jpg
+17-Nov-2016 13:25:25 example_folder img1 0 0 ::1  *empty*    0 0
+17-Nov-2016 13:32:23 ::1 *start_loading
+17-Nov-2016 13:32:23 ::1 *Browser_Information Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+17-Nov-2016 13:32:23 ::1 *done_loading_Images/example_folder/img1.jpg
+17-Nov-2016 13:32:23 example_folder img1 0 0 ::1  *empty*    0 0
+17-Nov-2016 13:32:25 ::1 *start_polygon
+17-Nov-2016 13:32:25 ::1 *What_is_this_object_query
+17-Nov-2016 13:32:27 example_folder img1 0 1 ::1  tets 1 t3 cpts_not_modified 0 0
+17-Nov-2016 13:40:45 ::1 *Browser_Information Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+17-Nov-2016 13:40:45 ::1 *start_loading
+17-Nov-2016 13:40:45 ::1 *done_loading_Images/example_folder/img1.jpg
