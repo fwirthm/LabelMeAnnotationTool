@@ -74,7 +74,19 @@
             $date = $obj->date;
             $timestamp = strtotime($date);
             if ($timestamp > $lastTimestamp)
-                $lastUser = $obj->polygon->username;
+            {
+                
+                //if object is a polygon or a bounding box
+                if ( isset ( $obj->polygon->username) )
+                {
+                    $lastUser = $obj->polygon->username;
+                }
+                //otherwise it is a segment
+                else
+                {
+                    $lastUser = $obj->segm->username;
+                }
+            }
         }
         
         return $lastUser;
@@ -271,6 +283,9 @@
                 //collect the name of the mask file for this segment
                 $mask= $obj->segm->mask;
             }
+            
+            
+            
             
             //write object parameters to xml
             fwrite($myfile, "<object>");
