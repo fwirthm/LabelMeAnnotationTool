@@ -2688,3 +2688,143 @@
 16-Nov-2016 17:07:08 ::1 *start_polygon
 16-Nov-2016 17:07:08 ::1 *What_is_this_object_query
 16-Nov-2016 17:07:16 example_folder img1 0 1 ::1  test 1 testuser cpts_not_modified 0 0
+16-Nov-2016 17:11:16 ::1 *start_polygon
+16-Nov-2016 17:11:17 ::1 *What_is_this_object_query
+16-Nov-2016 17:11:52 ::1 *Browser_Information Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+16-Nov-2016 17:11:52 ::1 *start_loading
+16-Nov-2016 17:11:52 ::1 *done_loading_Images/example_folder/img1.jpg
+16-Nov-2016 17:11:53 ::1 *start_polygon
+16-Nov-2016 17:11:54 ::1 *What_is_this_object_query
+16-Nov-2016 17:12:37 example_folder img1 1 2 ::1  hous 1 testuser cpts_not_modified 0 0
+16-Nov-2016 17:12:47 ::1 *Browser_Information Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+16-Nov-2016 17:12:47 ::1 *start_loading
+16-Nov-2016 17:12:47 ::1 *done_loading_Images/example_folder/img1.jpg
+16-Nov-2016 17:12:49 ::1 *start_polygon
+16-Nov-2016 17:12:49 ::1 *What_is_this_object_query
+16-Nov-2016 17:13:33 ::1 *Browser_Information Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+16-Nov-2016 17:13:33 ::1 *start_loading
+16-Nov-2016 17:13:33 ::1 *done_loading_Images/example_folder/img1.jpg
+16-Nov-2016 17:13:35 ::1 *start_polygon
+16-Nov-2016 17:13:35 ::1 *What_is_this_object_query
+16-Nov-2016 17:13:42 ::1 *start_polygon
+16-Nov-2016 17:13:42 ::1 *What_is_this_object_query
+16-Nov-2016 17:13:54 ::1 *Opened_Edit_Popup
+16-Nov-2016 17:14:00 ::1 *Closed_Edit_Popup
+16-Nov-2016 17:14:20 ::1 *start_polygon
+16-Nov-2016 17:14:20 ::1 *What_is_this_object_query
+16-Nov-2016 17:14:31 ::1 *start_polygon
+16-Nov-2016 17:14:32 ::1 *What_is_this_object_query
+16-Nov-2016 17:14:34 example_folder img1 2 3 ::1  test 1 testuser cpts_not_modified 0 0
+16-Nov-2016 17:14:36 ::1 *Opened_Edit_Popup
+16-Nov-2016 17:14:37 ::1 *Closed_Edit_Popup
+16-Nov-2016 17:14:39 ::1 *Opened_Edit_Popup
+16-Nov-2016 17:16:38 ::1 *Closed_Edit_Popup
+17-Nov-2016 08:01:00 ::1 *start_loading
+17-Nov-2016 08:01:00 ::1 *Browser_Information Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+17-Nov-2016 08:01:00 ::1 *done_loading_Images/example_folder/img1.jpg
+17-Nov-2016 08:01:01 ::1 *start_loading
+17-Nov-2016 08:01:01 ::1 *Browser_Information Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+17-Nov-2016 08:01:01 ::1 *done_loading_Images/example_folder/img1.jpg
+17-Nov-2016 08:01:03 ::1 *Opened_Edit_Popup
+17-Nov-2016 08:01:06 ::1 *Closed_Edit_Popup
+17-Nov-2016 08:11:34 ::1 *Browser_Information Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+17-Nov-2016 08:11:34 ::1 *start_loading
+17-Nov-2016 08:11:34 ::1 *done_loading_Images/example_folder/img1.jpg
+17-Nov-2016 08:11:59 ::1 *Browser_Information Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+17-Nov-2016 08:11:59 ::1 *start_loading
+17-Nov-2016 08:11:59 ::1 *done_loading_Images/example_folder/img1.jpg
+17-Nov-2016 08:11:59 example_folder img1 0 0 ::1  *empty*    0 0
+17-Nov-2016 08:12:18 ::1 *start_polygon
+17-Nov-2016 08:12:18 ::1 *What_is_this_object_query
+17-Nov-2016 08:12:21 example_folder img1 0 1 ::1  test 1 testuser cpts_not_modified 0 0
+17-Nov-2016 08:12:24 ::1 *start_polygon
+17-Nov-2016 08:12:32 ::1 *start_polygon
+17-Nov-2016 08:13:56 ::1 *What_is_this_object_query
+17-Nov-2016 08:13:59 example_folder img1 1 2 ::1  car 2 testuser cpts_not_modified 0 0
+17-Nov-2016 08:14:19 example_folder img2 0 0 ::1  *empty*    0 0
+17-Nov-2016 08:14:19 example_folder img3 0 0 ::1  *empty*    0 0
+17-Nov-2016 08:14:20 example_folder mini 0 0 ::1  *empty*    0 0
+17-Nov-2016 08:16:58 ::1 *start_loading
+17-Nov-2016 08:16:58 ::1 *Browser_Information Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+17-Nov-2016 08:16:58 ::1 *done_loading_Images/example_folder/img1.jpg
+17-Nov-2016 08:17:00 ::1 *start_polygon
+17-Nov-2016 08:17:00 ::1 *What_is_this_object_query
+17-Nov-2016 08:17:09 ::1 *start_polygon
+17-Nov-2016 08:17:09 ::1 *What_is_this_object_query
+17-Nov-2016 08:17:11 ::1 *start_polygon
+17-Nov-2016 08:17:11 ::1 *What_is_this_object_query
+17-Nov-2016 08:17:13 ::1 *start_polygon
+17-Nov-2016 08:17:14 ::1 *What_is_this_object_query
+17-Nov-2016 08:17:16 ::1 *start_polygon
+17-Nov-2016 08:17:16 ::1 *What_is_this_object_query
+17-Nov-2016 08:17:18 ::1 *start_polygon
+17-Nov-2016 08:17:19 ::1 *What_is_this_object_query
+17-Nov-2016 08:17:22 ::1 *start_polygon
+17-Nov-2016 08:17:22 ::1 *What_is_this_object_query
+17-Nov-2016 08:17:25 ::1 *start_polygon
+17-Nov-2016 08:17:25 ::1 *What_is_this_object_query
+17-Nov-2016 08:17:28 ::1 *start_polygon
+17-Nov-2016 08:17:28 ::1 *What_is_this_object_query
+17-Nov-2016 08:17:30 ::1 *start_polygon
+17-Nov-2016 08:17:31 ::1 *What_is_this_object_query
+17-Nov-2016 08:17:33 ::1 *start_polygon
+17-Nov-2016 08:17:33 ::1 *What_is_this_object_query
+17-Nov-2016 08:18:15 ::1 *Browser_Information Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+17-Nov-2016 08:18:15 ::1 *start_loading
+17-Nov-2016 08:18:15 ::1 *done_loading_Images/example_folder/img1.jpg
+17-Nov-2016 08:18:17 ::1 *start_polygon
+17-Nov-2016 08:18:17 ::1 *What_is_this_object_query
+17-Nov-2016 08:19:51 ::1 *start_polygon
+17-Nov-2016 08:19:52 ::1 *What_is_this_object_query
+17-Nov-2016 08:19:56 ::1 *start_loading
+17-Nov-2016 08:19:56 ::1 *Browser_Information Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+17-Nov-2016 08:19:57 ::1 *done_loading_Images/example_folder/img1.jpg
+17-Nov-2016 08:19:57 ::1 *start_polygon
+17-Nov-2016 08:20:01 ::1 *start_polygon
+17-Nov-2016 08:20:02 ::1 *What_is_this_object_query
+17-Nov-2016 08:20:27 example_folder img1 2 3 ::1  test 1 testuser cpts_not_modified 0 0
+17-Nov-2016 08:20:30 ::1 *Opened_Edit_Popup
+17-Nov-2016 08:20:36 ::1 *Closed_Edit_Popup
+17-Nov-2016 08:20:38 ::1 *Opened_Edit_Popup
+17-Nov-2016 08:20:43 ::1 *Closed_Edit_Popup
+17-Nov-2016 08:20:43 example_folder img1 3 3 ::1  test->test 1 testuser cpts_not_modified 0 0
+17-Nov-2016 08:20:47 ::1 *Opened_Edit_Popup
+17-Nov-2016 08:20:50 ::1 *Deleting_object
+17-Nov-2016 08:20:50 ::1 *Closed_Edit_Popup
+17-Nov-2016 08:20:50 example_folder img1 3 3 ::1  test 0 testuser cpts_not_modified 0 1
+17-Nov-2016 08:20:54 ::1 *Opened_Edit_Popup
+17-Nov-2016 08:21:01 ::1 *Closed_Edit_Popup
+17-Nov-2016 08:21:12 ::1 *Opened_Edit_Popup
+17-Nov-2016 08:21:14 ::1 *Closed_Edit_Popup
+17-Nov-2016 08:21:14 example_folder img1 3 3 ::1  car->car 0 testuser cpts_not_modified 1 1
+17-Nov-2016 08:21:16 ::1 *start_polygon
+17-Nov-2016 08:21:16 ::1 *What_is_this_object_query
+17-Nov-2016 08:21:33 example_folder img1 3 4 ::1  p1 1 testuser cpts_not_modified 1 1
+17-Nov-2016 08:32:40 ::1 *Browser_Information Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+17-Nov-2016 08:32:40 ::1 *start_loading
+17-Nov-2016 08:32:40 ::1 *done_loading_Images/example_folder/img1.jpg
+17-Nov-2016 08:32:40 example_folder img1 0 0 ::1  *empty*    0 0
+17-Nov-2016 08:32:41 ::1 *start_polygon
+17-Nov-2016 08:32:42 ::1 *What_is_this_object_query
+17-Nov-2016 08:32:47 example_folder img1 0 1 ::1  ts 1 testuser cpts_not_modified 0 0
+17-Nov-2016 08:32:48 ::1 *start_polygon
+17-Nov-2016 08:32:49 ::1 *What_is_this_object_query
+17-Nov-2016 08:32:54 example_folder img1 1 2 ::1  diff 2 testuser cpts_not_modified 0 0
+17-Nov-2016 08:35:15 ::1 *Browser_Information Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36
+17-Nov-2016 08:35:15 ::1 *start_loading
+17-Nov-2016 08:35:15 ::1 *done_loading_Images/example_folder/img1.jpg
+17-Nov-2016 08:35:15 example_folder img1 0 0 ::1  *empty*    0 0
+17-Nov-2016 08:35:17 ::1 *start_polygon
+17-Nov-2016 08:35:18 ::1 *What_is_this_object_query
+17-Nov-2016 08:35:22 example_folder img1 0 1 ::1  house 1 testuser cpts_not_modified 0 0
+17-Nov-2016 08:35:24 ::1 *start_polygon
+17-Nov-2016 08:35:24 ::1 *What_is_this_object_query
+17-Nov-2016 08:35:31 example_folder img1 1 2 ::1  lad 2 testuser cpts_not_modified 0 0
+17-Nov-2016 08:36:10 ::1 *start_polygon
+17-Nov-2016 08:36:14 ::1 *Opened_Edit_Popup
+17-Nov-2016 08:36:16 ::1 *Closed_Edit_Popup
+17-Nov-2016 08:36:17 example_folder img2 0 0 ::1  *empty*    0 0
+17-Nov-2016 08:36:18 example_folder img3 0 0 ::1  *empty*    0 0
+17-Nov-2016 08:36:18 example_folder mini 0 0 ::1  *empty*    0 0
+17-Nov-2016 08:36:21 ::1 *Opened_Edit_Popup
+17-Nov-2016 08:36:22 ::1 *Closed_Edit_Popup

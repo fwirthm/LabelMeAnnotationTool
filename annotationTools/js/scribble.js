@@ -723,6 +723,7 @@ function EditBubbleEditScribble(){
   main_handler.attributes = document.getElementById('attributes').value;
   main_handler.pose = document.getElementById('pose').value;
   main_handler.occluded = document.getElementById('occluded').value;
+  main_handler.truncated = document.getElementById('truncated').value;
   main_handler.difficult = document.getElementById('difficult').value;
   
   document.getElementById('select_canvas').style.zIndex = -2;

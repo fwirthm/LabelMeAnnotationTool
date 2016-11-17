@@ -556,6 +556,10 @@ function video(id) {
         // occlusion field
         if (document.getElementById('occluded')) new_occluded = RemoveSpecialChars(document.getElementById('occluded').value);
         else new_occluded = RemoveSpecialChars(adjust_occluded);
+          
+        // truncatation field
+        if (document.getElementById('truncated')) new_truncated = RemoveSpecialChars(document.getElementById('truncated').value);
+        else new_truncated = RemoveSpecialChars(adjust_truncated);
         
         //difficult field
         if (document.getElementById('difficult')) new_difficult = RemoveSpecialChars(document.getElementById('difficult').value);
@@ -584,6 +588,7 @@ function video(id) {
       LMsetObjectField(LM_xml, obj_ndx, "attributes", new_attributes);
       LMsetObjectField(LM_xml, obj_ndx, "pose", new_pose);
       LMsetObjectField(LM_xml, obj_ndx, "occluded", new_occluded);
+      LMsetObjectField(LM_xml, obj_ndx, "truncated", new_truncated);
       LMsetObjectField(LM_xml, obj_ndx, "difficult", new_difficult);
       WriteXML(SubmitXmlUrl,LM_xml,function(){return;});
     
@@ -608,6 +613,10 @@ function video(id) {
             // get occlusion field (if the field exists)
             if (document.getElementById('occluded')) new_occluded = RemoveSpecialChars(document.getElementById('occluded').value);
             else new_occluded = "";
+            
+            // get truncatation field (if the field exists)
+            if (document.getElementById('truncated')) new_truncated = RemoveSpecialChars(document.getElementById('truncated').value);
+            else new_truncated = ""
             
             // get difficult field (if the field exists)
             if (document.getElementById('difficult')) new_difficult = RemoveSpecialChars(document.getElementById('difficult').value);
@@ -656,6 +665,7 @@ function video(id) {
         if(use_attributes) {
             html_str += '<pose>' + new_pose + '</pose>';
             html_str += '<occluded>' + new_occluded + '</occluded>';
+            html_str += '<truncated>' + new_truncated + '</truncated>';
             html_str += '<difficult>' + new_difficult + '</difficult>';
             html_str += '<attributes>' + new_attributes + '</attributes>';
         }

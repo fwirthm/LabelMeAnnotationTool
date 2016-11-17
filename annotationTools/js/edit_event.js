@@ -142,6 +142,7 @@ var adjust_objEnter = '';
 var adjust_attributes;
 var adjust_pose;
 var adjust_occluded;
+var adjust_truncated;
 var adjust_difficult;
 
 /** This function is called when the user clicks 'Adjust Polygon' button */
@@ -166,6 +167,7 @@ function AdjustPolygonButton() {
   adjust_attributes = document.getElementById('attributes').value;
   adjust_pose = document.getElementById('pose').value;
   adjust_occluded = document.getElementById('occluded').value;
+  adjust_truncated = document.getElementById('truncated').value;
   adjust_difficult = document.getElementById('difficult').value;
   
   // Close the edit popup bubble:

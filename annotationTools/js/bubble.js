@@ -209,6 +209,7 @@ function GetPopupFormDraw(scribble_form) {
   if(use_attributes) {
     html_str += HTMLposeBox("");
     html_str += HTMLoccludedBox("");
+    html_str += HTMLtruncatedBox("");
     html_str += HTMLdifficultBox("");
     html_str += "<b>Enter attributes</b><br />";
     html_str += HTMLattributesBox("");
@@ -243,6 +244,7 @@ function GetPopupFormEdit(anno) {
   var attributes = LMgetObjectField(LM_xml,anno.anno_id,'attributes');
   var pose = LMgetObjectField(LM_xml,anno.anno_id,'pose');
   var occluded = LMgetObjectField(LM_xml,anno.anno_id,'occluded');
+  var truncated = LMgetObjectField(LM_xml,anno.anno_id,'truncated');
   var difficult = LMgetObjectField(LM_xml,anno.anno_id,'difficult');
   var parts = LMgetObjectField(LM_xml, anno.anno_id, 'parts');
   
@@ -252,6 +254,7 @@ function GetPopupFormEdit(anno) {
   if(use_attributes) {
     html_str += HTMLposeBox(pose);
     html_str += HTMLoccludedBox(occluded);
+    html_str += HTMLtruncatedBox(truncated);
     html_str += HTMLdifficultBox(difficult);
     html_str += "<b>Enter attributes</b><br />";
     html_str += HTMLattributesBox(attributes);
@@ -298,7 +301,7 @@ function GetPopupFormEdit(anno) {
 function HTMLobjectBox(obj_name) {
   var html_str="";
   
-  html_str += '<input name="objEnter" id="objEnter" type="text" style="width:220px;" tabindex="0" value="'+obj_name+'" title="Enter the object\'s name here. Avoid application specific names, codes, long descriptions. Use a name you think other people would agree in using. "';
+  html_str += '<input name="objEnter" id="objEnter" type="text" style="width:270px;" tabindex="0" value="'+obj_name+'" title="Enter the object\'s name here. Avoid application specific names, codes, long descriptions. Use a name you think other people would agree in using. "';
   
   html_str += ' onkeyup="var c;if(event.keyCode)c=event.keyCode;if(event.which)c=event.which;if(c==13){';
   //html_str += 'console.log($(".ui-autocomplete.ui-widget:visible").length);';
@@ -347,7 +350,7 @@ function HTMLoccludedBox(occluded) {
   }
   
   // the value of the selection is inside a hidden field:
-  html_str += 'Is the object occluded? <br /><input type="hidden" name="occluded" id="occluded" value="'+occluded+'"/>';
+  html_str += 'Is the object occluded? <input type="hidden" name="occluded" id="occluded" value="'+occluded+'"/>';
   
   // generate radio button
   if (occluded=='yes') {
@@ -363,6 +366,32 @@ function HTMLoccludedBox(occluded) {
   return html_str;
 }
 
+// is the object truncated?
+function HTMLtruncatedBox(truncated) {
+    var html_str="";
+    
+    // by default, the value of truncated is "no"
+    if (!(truncated=="no" || truncated=="yes")) {
+        truncated="no";
+    }
+    
+    // the value of the selection is inside a hidden field:
+    html_str += 'Is the object truncated? <input type="hidden" name="truncated" id="truncated" value="'+truncated+'"/>';
+    
+    // generate radio button
+    if (truncated=='yes') {
+        html_str += '<input type="radio" name="rbtruncated" id="rbtruncated" value="yes" checked="yes" onclick="document.getElementById(\'truncated\').value=\'yes\';" />yes';
+        html_str += '<input type="radio" name="rbtruncated" id="rbtruncated" value="no"  onclick="document.getElementById(\'truncated\').value=\'no\';" />no';
+    }
+    else {
+        html_str += '<input type="radio" name="rbtruncated" id="rbtruncated" value="yes"  onclick="document.getElementById(\'truncated\').value=\'yes\';" />yes';
+        html_str += '<input type="radio" name="rbtruncated" id="rbtruncated" value="no" checked="yes"  onclick="document.getElementById(\'truncated\').value=\'no\';" />no';
+    }
+    html_str += '<br />';
+    
+    return html_str;
+}
+
 // is the object difficult?
 function HTMLdifficultBox(difficult) {
     var html_str="";
@@ -373,7 +402,7 @@ function HTMLdifficultBox(difficult) {
     }
     
     // the value of the selection is inside a hidden field:
-    html_str += 'Is the object difficult?<br /> <input type="hidden" name="difficult" id="difficult" value="'+difficult+'"/>';
+    html_str += 'Is the object difficult? <input type="hidden" name="difficult" id="difficult" value="'+difficult+'"/>';
     
     // generate radio button
     if (difficult=='yes') {
@@ -446,7 +475,7 @@ function HTMLposeBox(pose) {
 
 // Boxes to enter attributes
 function HTMLattributesBox(attList) {    
-  return '<textarea name="attributes" id="attributes" type="text" style="width:220px; height:3em;" tabindex="0" title="Enter a comma separated list of attributes, adjectives or other object properties">'+attList+'</textarea>';
+  return '<textarea name="attributes" id="attributes" type="text" style="width:220px; height:2em;" tabindex="0" title="Enter a comma separated list of attributes, adjectives or other object properties">'+attList+'</textarea><br />';
 }
 
 

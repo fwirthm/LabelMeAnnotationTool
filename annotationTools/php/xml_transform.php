@@ -4,8 +4,8 @@
      *  \brief     Script which generates a PASCAL VOC conform version (copy) of the xml files containing the annotations.
      *  \details   if WriteXML() (specified in io.js) is called this script will also be called.
      *  \author    Florian Wirthmüller
-     *  \version   1.1
-     *  \date      14.11.2016
+     *  \version   1.20
+     *  \date      17.11.2016
      *  \bug       no handling for concurrent data access.
      */
     
@@ -17,7 +17,6 @@
      */
     function getFilename ($xml)
     {
-        
         $annotation = new SimpleXMLElement($xml);
         $filename = $annotation->filename;
         $filename = preg_replace( "/\r|\n/", "", $filename );
@@ -165,14 +164,17 @@
     fwrite($myfile, "<depth>".(string)$depth."</depth>");
     fwrite($myfile, "</size>");
     
+    
+    //collect parameters of all annotated objects
     foreach ($annotation->object as $obj) {
         $type=-1;
-        /*contains the type of type of the object:
+        /*contains the type of the object:
          not set yet: -1
          for a polygon: 0
          for a bounding box: 1
          for a mask: 2
          */
+        
         $deleted = $obj->deleted;
         
         //only active bounding boxes occur in new xml
@@ -181,6 +183,7 @@
             
             $name = $obj->name;
             
+            //convert these params from yes/no to binary values
             if ($obj->occluded == 'yes')
             {
                 $occluded = 1;
@@ -188,6 +191,15 @@
             else
             {
                 $occluded = 0;
+            }
+            
+            if ($obj->truncated == 'yes')
+            {
+                $truncated = 1;
+            }
+            else
+            {
+                $truncated = 0;
             }
             
             if ($obj->difficult == 'yes')
@@ -205,13 +217,16 @@
             //check if the object is a bounding box
             if($obj->type=='bounding_box')
             {
+                //set type
                 $type = 1;
             
+                //initialize edges
                 $xmin = (int)100000;
                 $xmax = (int)-100000;
                 $ymin = (int)100000;
                 $ymax = (int)-100000;
             
+                //collect edges
                 foreach ($obj->polygon->pt as $p)
                 {
                 
@@ -238,26 +253,31 @@
             //check if the object is a polygon (and not a bounding box)
             elseif(isset($obj->polygon))
             {
+                //set type
                 $type = 0;
             }
             //if the object is neither a polygon nor a bounding box it is a segment
             else
             {
+                //set type and segmented flag
                 $type = 2;
+                $segmented = 1;
+                //edges can be collected directly in this case
                 $xmin= $obj->segm->box->xmin;
                 $xmax= $obj->segm->box->xmax;
                 $ymin= $obj->segm->box->ymin;
                 $ymax= $obj->segm->box->ymax;
                 
+                //collect the name of the mask file for this segment
                 $mask= $obj->segm->mask;
             }
             
-            
+            //write object parameters to xml
             fwrite($myfile, "<object>");
-        
             fwrite($myfile, "<name>".(string)$name."</name>");
             fwrite($myfile, "<pose>".ucfirst ((string)$pose)."</pose>");
             fwrite($myfile, "<occluded>".(string)$occluded."</occluded>");
+            fwrite($myfile, "<truncated>".(string)$truncated."</truncated>");
             fwrite($myfile, "<difficult>".(string)$difficult."</difficult>");
             
             if ($type==0)
@@ -280,7 +300,6 @@
             {
                 fwrite($myfile, "<mask>".(string)$mask."</mask>");
             }
-            
             
             fwrite($myfile, "</object>");
         }
