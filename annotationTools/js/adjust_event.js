@@ -8,10 +8,11 @@
  * @param {array} x - The x coordinates for the polygon points
  * @param {array} y - The y coordinates for the polygon points
  * @param {string} obj_name - The name of the adjusted_polygon
+ * @param {string} user_name - The name of the user who adjusted the polygon
  * @param {function} ExitFunction - the_function to execute once adjusting is done
  * @param {float} scale - Scaling factor for polygon points
 */
-function AdjustEvent(dom_attach,x,y,obj_name,ExitFunction,scale, bounding_box_annot) {
+function AdjustEvent(dom_attach,x,y,obj_name,ExitFunction,scale, bounding_box_annot, user_name) {
 
   /****************** Private variables ************************/
 
@@ -26,6 +27,9 @@ function AdjustEvent(dom_attach,x,y,obj_name,ExitFunction,scale, bounding_box_an
 
   // Object name:
   this.obj_name = obj_name;
+    
+  // Username name:
+  this.user_name = user_name;
 
   // Function to call when event is finished:
   this.ExitFunction = ExitFunction;
@@ -74,7 +78,7 @@ function AdjustEvent(dom_attach,x,y,obj_name,ExitFunction,scale, bounding_box_an
     console.log('LabelMe: Starting adjust event...');
     // Draw polygon:
 
-    this.polygon_id = this.DrawPolygon(this.dom_attach,this.x,this.y,this.obj_name,this.scale);
+    this.polygon_id = this.DrawPolygon(this.dom_attach,this.x,this.y,this.obj_name,this.scale, this.user_name);
     select_anno.polygon_id = this.polygon_id;
     FillPolygon(this.polygon_id);
     if (video_mode){
@@ -272,7 +276,7 @@ function AdjustEvent(dom_attach,x,y,obj_name,ExitFunction,scale, bounding_box_an
       // Remove polygon and redraw:
       $('#'+this.polygon_id).parent().remove();
       //$('#'+this.polygon_id).remove();
-      this.polygon_id = this.DrawPolygon(this.dom_attach,this.x,this.y,this.obj_name,this.scale);
+      this.polygon_id = this.DrawPolygon(this.dom_attach,this.x,this.y,this.obj_name,this.scale, this.user_name);
       select_anno.polygon_id = this.polygon_id;
       // Adjust control points:
 
@@ -344,7 +348,7 @@ function AdjustEvent(dom_attach,x,y,obj_name,ExitFunction,scale, bounding_box_an
       //if ($('#'+this.polygon_id).is('image')) $('#'+this.polygon_id).remove();
       $('#'+this.polygon_id).parent().remove();
       //$('#'+this.polygon_id).remove();
-      this.polygon_id = this.DrawPolygon(this.dom_attach,this.x,this.y,this.obj_name,this.scale);
+      this.polygon_id = this.DrawPolygon(this.dom_attach,this.x,this.y,this.obj_name,this.scale,this.user_name);
       select_anno.polygon_id = this.polygon_id;
       // Adjust control points:
       this.RemoveControlPoints();
@@ -424,7 +428,7 @@ function AdjustEvent(dom_attach,x,y,obj_name,ExitFunction,scale, bounding_box_an
       // Remove polygon and redraw:
       //if ($('#'+this.polygon_id).is('image')) $('#'+this.polygon_id).remove();
       $('#'+this.polygon_id).parent().remove();
-      this.polygon_id = this.DrawPolygon(this.dom_attach,this.x,this.y,this.obj_name,this.scale);
+      this.polygon_id = this.DrawPolygon(this.dom_attach,this.x,this.y,this.obj_name,this.scale,this.user_name);
       select_anno.polygon_id = this.polygon_id;
 
       // Redraw center of mass:
@@ -498,10 +502,10 @@ function AdjustEvent(dom_attach,x,y,obj_name,ExitFunction,scale, bounding_box_an
   };
 
 
-  this.DrawPolygon = function(dom_id,x,y,obj_name,scale) {
+  this.DrawPolygon = function(dom_id,x,y,obj_name,scale,user_name) {
     if(x.length==1) return DrawFlag(dom_id,x[0],y[0],obj_name,scale);
     
     var attr = 'fill="none" stroke="' + HashObjectColor(obj_name) + '" stroke-width="4"';
-    return DrawPolygon(dom_id,x,y,obj_name,attr,scale);
+    return DrawPolygonNew(dom_id,x,y,obj_name,attr,scale,user_name);
   };
 }

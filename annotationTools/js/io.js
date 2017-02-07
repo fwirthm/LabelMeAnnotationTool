@@ -1,6 +1,7 @@
 /** @file Input/output functions for writing annotation files to the LabelMe server. */
 
 function ReadXML(xml_file,SuccessFunction,ErrorFunction) {
+    
   $.ajax({
     type: "GET",
     url: xml_file,
@@ -18,6 +19,8 @@ function WriteXML(url,xml_data,SuccessFunction,ErrorFunction) {
         
     // use regular expressions to replace all occurrences of
     sXmlString = sXmlString.replace(/ xmlns=\"http:\/\/www.w3.org\/1999\/xhtml\"/g, "");
+        
+    //console.log("write xml - username="+username);
                                     
                         
     $.ajax({

@@ -159,6 +159,7 @@ function annotation(anno_id) {
     // Draw a polygon given this annotation's control points.
     this.DrawPolygon = function (im_ratio, xp, yp) {
         var obj_name = LMgetObjectField(LM_xml,this.anno_id,'name');
+        var user_name = LMgetObjectField(LM_xml,this.anno_id,'username');
 
         // Determine if an angle has been labeled:
         var strtok = obj_name.split(/ /);
@@ -175,12 +176,12 @@ function annotation(anno_id) {
         else if(this.GetAutomatic()==1) {
             // Draw a dashed polygon:
             var attr = 'fill="none" stroke="' + HashObjectColor(obj_name) + '" stroke-width="4" stroke-dasharray="9,5"';
-            this.polygon_id = DrawPolygon(this.div_attach,xp,yp,obj_name,attr,im_ratio);
+            this.polygon_id = DrawPolygonNew(this.div_attach,xp,yp,obj_name,attr,im_ratio,user_name);
         }
         else {
             // Draw a polygon:
             var attr = 'fill="none" stroke="' + HashObjectColor(obj_name) + '" stroke-width="4"';
-            this.polygon_id = DrawPolygon(this.div_attach,xp,yp,obj_name,attr,im_ratio);
+            this.polygon_id = DrawPolygonNew(this.div_attach,xp,yp,obj_name,attr,im_ratio, user_name);
         }
         return this.polygon_id;
     };

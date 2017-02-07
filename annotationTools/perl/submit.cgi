@@ -31,6 +31,9 @@ $stdin =~ tr/\r//d;
 
 if (index($fname, ".") != -1) {
     $fname = substr($fname,0,length($fname)-4);
+    if (index($fname, ".") != -1) {
+        $fname = substr($fname,0,length($fname)-1);
+    }
 }
 
 ($folder,$junk) = split("</folder>",$stdin);

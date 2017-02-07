@@ -39,19 +39,51 @@ function LMplot(xml,imagename) {
 //   obj_name - String with object name (empty string if no name).
 //   attr - String containing polygon attributes.
 //   scale - Scalar value to scale X,Y coordinates (optional).
-function DrawPolygon(element_id,X,Y,obj_name,attr,scale) {
+/*function DrawPolygon(element_id,X,Y,obj_name,attr,scale) {
   // Create string of the points ("x1,y1 x2,y2 x3,y3 ..."):
   var poly_points = "";
   for(var i = 0; i < X.length; i++) poly_points += (scale*X[i]) + "," + (scale*Y[i]) + " ";
-  
+
   // Get drawn object DOM element id:
   var dom_id = element_id + '_obj' + $('#'+element_id).children().length + '_' + Math.floor(Math.random()*100000);
 
-  // Draw polygon:
   $('#'+element_id).append('<a xmlns="http://www.w3.org/2000/svg"> <polygon xmlns="http://www.w3.org/2000/svg" id="' + dom_id + '" points="' + poly_points + '" ' + attr + ' /><title xmlns="http://www.w3.org/2000/svg">' + obj_name + '</title></a>');
+    
 
   return dom_id;
+}*/
+
+
+// Draws a polygon.  Returns DOM element id of drawn polygon.
+//   element_id - String containing DOM element id to attach to.
+//   X - Array with X coordinates.
+//   Y - Array with Y coordinates.
+//   obj_name - String with object name (empty string if no name).
+//   attr - String containing polygon attributes.
+//   scale - Scalar value to scale X,Y coordinates (optional).
+function DrawPolygonNew(element_id,X,Y,obj_name,attr,scale,user_name) {
+    // Create string of the points ("x1,y1 x2,y2 x3,y3 ..."):
+    var poly_points = "";
+    for(var i = 0; i < X.length; i++) poly_points += (scale*X[i]) + "," + (scale*Y[i]) + " ";
+    
+    
+    // Get drawn object DOM element id:
+    var dom_id = element_id + '_obj' + $('#'+element_id).children().length + '_' + Math.floor(Math.random()*100000);
+    //var MyDebugInfo = "user_name: " + user_name + "\"";
+    //console.log(MyDebugInfo);
+    
+    //detectorAnnotated = false;
+    // Draw polygon:
+    if (user_name == "ClassifierPropagation"){
+        $('#'+element_id).append('<a xmlns="http://www.w3.org/2000/svg"> <polygon stroke-dasharray="5, 5" xmlns="http://www.w3.org/2000/svg" id="' + dom_id + '" points="' + poly_points + '" ' + attr + ' /><title xmlns="http://www.w3.org/2000/svg">' + obj_name + '</title></a>');
+    }
+    else{
+        $('#'+element_id).append('<a xmlns="http://www.w3.org/2000/svg"> <polygon xmlns="http://www.w3.org/2000/svg" id="' + dom_id + '" points="' + poly_points + '" ' + attr + ' /><title xmlns="http://www.w3.org/2000/svg">' + obj_name + '</title></a>');
+    }
+    
+    return dom_id;
 }
+
 
 // Draw a flag given a point (X,Y).  Returns DOM element id of drawn flag.
 //   element_id - String containing DOM element id to attach to.

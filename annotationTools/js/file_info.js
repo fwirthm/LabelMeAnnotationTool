@@ -63,9 +63,12 @@ function file_info() {
                 }
                 if(par_field=='image') {
                     this.im_name = par_value;
-                    if(this.im_name.indexOf('.jpg')==-1 && this.im_name.indexOf('.png')==-1) {
+                    if(this.im_name.indexOf('.jpg')==-1 && this.im_name.indexOf('.png')==-1 && this.im_name.indexOf('.jpeg')==-1)  {
                         this.im_name = this.im_name + '.jpg';
                     }
+
+                    
+                    
                 }
                 if(par_field=='hitId') {
                     this.hitId = par_value;
@@ -258,7 +261,13 @@ function file_info() {
     
     /** Gets annotation path */
     this.GetAnnotationPath = function () {
-        if((this.mode=='i') || (this.mode=='c') || (this.mode=='f') || (this.mode=='im') || (this.mode=='mt')) return 'Annotations/' + this.dir_name + '/' + this.im_name.substr(0,this.im_name.length-4) + '.xml';
+        
+        var imgName = this.im_name.substr(0,this.im_name.length-4);
+        if (imgName.charAt(imgName.length-1)=="."){
+            imgName = imgName.substr(0, imgName.length-1);
+        }
+        
+        if((this.mode=='i') || (this.mode=='c') || (this.mode=='f') || (this.mode=='im') || (this.mode=='mt')) return 'Annotations/' + this.dir_name + '/' + imgName + '.xml';
     };
     
     /** Gets full image name */

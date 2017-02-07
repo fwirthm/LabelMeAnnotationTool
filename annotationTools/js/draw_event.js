@@ -1,5 +1,4 @@
 /** @file This file contains the scripts for when the draw event is activated. */
-
 var draw_anno = null;
 var query_anno = null;
 /** This function is called with the draw event is started.  It can be 

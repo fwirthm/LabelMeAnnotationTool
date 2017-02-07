@@ -744,7 +744,7 @@ function video(id) {
           StopEditEvent();
           WriteXML(SubmitXmlUrl,LM_xml,function(){return;});
           this.adjust_event = null;
-        },main_media.GetImRatio(), bounding_box);
+        },main_media.GetImRatio(), bounding_box, LMgetObjectField(LM_xml,anno.anno_id,'username'));
       // Start adjust event:
       adjust_event.StartEvent();
     };

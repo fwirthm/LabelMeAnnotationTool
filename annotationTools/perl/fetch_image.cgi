@@ -67,7 +67,7 @@ elsif($mode eq "f") {
 
     my $do_rand = 1;
     my $i = 0;
-    if($image =~ m/\.jpg$/) {
+    if($image =~ m/\.jpg$/ or $image =~ m/\.jpeg$/) {
 	$do_rand = 0;
 
 	# Get location of image in array:
@@ -89,7 +89,7 @@ elsif($mode eq "f") {
 	$im_dir = $folder;
 	$im_file = $all_images[$i];
     }
-    while(!($im_file =~ m/\.jpg$/))
+    while(!($im_file =~ m/\.jpg$/ or $im_file =~ m/\.jpeg$/))
 
 #    my $fname = "DirLists/$collection.txt";
 #    

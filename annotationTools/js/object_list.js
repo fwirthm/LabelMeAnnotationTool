@@ -95,7 +95,7 @@ function RenderObjectList() {
 	'href="javascript:main_handler.AnnotationLinkClick('+ii+');" '+
 	'onmouseover="main_handler.AnnotationLinkMouseOver('+ii+');" ' +
 	'onmouseout="main_handler.AnnotationLinkMouseOut();" ';
-      
+        
       if (use_parts) {
 	html_str += 'ondrop="drop(event, '+ii+')" '+
 	  'ondragend="dragend(event, '+ii+')" '+
@@ -111,11 +111,13 @@ function RenderObjectList() {
       }
 
       var obj_name = LMgetObjectField(LM_xml,ii,'name');
+      var user_name = LMgetObjectField(LM_xml,ii,'username');
       if(obj_name.length==0 && !draw_anno) {
 	html_str += '<i>[ Please enter name ]</i>';
       }
       else {
-	html_str += obj_name;
+	html_str += "Obj: "+obj_name;
+          html_str += "    by: " + user_name;
       }
       
       if(isDeleted) html_str += '</b>';

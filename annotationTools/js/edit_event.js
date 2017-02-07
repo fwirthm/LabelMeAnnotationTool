@@ -13,7 +13,7 @@ var adjust_event = null;
 function StartEditEvent(anno_id,event) {
   
   console.log('LabelMe: Starting edit event...');
-  
+
   if (add_parts_to != null){
     $('#Link'+add_parts_to).css('font-weight',400)
     add_parts_to = null;
@@ -34,7 +34,7 @@ function StartEditEvent(anno_id,event) {
     old_name = LMgetObjectField(LM_xml,main_canvas.annotations[anid].anno_id,'name');
     new_name = old_name;
     InsertServerLogData('cpts_not_modified');
-    
+      
     // Set <automatic> in XML:
     LMsetObjectField(LM_xml, anno_id, 'automatic', '0');
     
@@ -63,6 +63,7 @@ function StartEditEvent(anno_id,event) {
     pt_x = select_anno.GetPtsX();
     pt_y = select_anno.GetPtsY();
   }
+  
   FillPolygon(select_anno.DrawPolygon(main_media.GetImRatio(),pt_x,pt_y));
   
   // Get location where popup bubble will appear:
@@ -216,7 +217,7 @@ function AdjustPolygonButton() {
       if (video_mode) main_media.SubmitEditObject();
       else main_handler.SubmitEditLabel();
       adjust_event = null;
-    },main_media.GetImRatio(), (LMgetObjectField(LM_xml, anno.anno_id, 'type') == 'bounding_box'));
+    },main_media.GetImRatio(), (LMgetObjectField(LM_xml, anno.anno_id, 'type') == 'bounding_box'),LMgetObjectField(LM_xml,anno.anno_id,'username'));
 
   // Start adjust event:
   adjust_event.StartEvent();

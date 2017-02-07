@@ -246,7 +246,12 @@ function Scribble_canvas(tag) {
       anno.scribble = new scribble(anno.anno_id);
       var Nobj = $(LM_xml).children("annotation").children("object").length;
       var imagname = main_media.GetFileInfo().GetImName();
+        
       imagname = imagname.substr(0, imagname.length-4);
+        if (imagname.charAt(imagname.length-1)=="."){
+            imagname = imagname.substr(0, imagname.length-1);
+        }
+        
       anno.scribble.SetRandomCache(this.cache_random_number);
       anno.SetType(1);
       scribble_canvas.image_corners = new Array();
@@ -363,7 +368,10 @@ function Scribble_canvas(tag) {
     var Nobj = $(LM_xml).children("annotation").children("object").length;
     if (scribble_canvas.annotationid > -1) Nobj = scribble_canvas.annotationid;
     var imagname = main_media.GetFileInfo().GetImName();
-    imagname = imagname.substr(0, imagname.length-4);
+      imagname = imagname.substr(0, imagname.length-4);
+      if (imagname.charAt(imagname.length-1)=="."){
+          imagname = imagname.substr(0, imagname.length-1);
+      }
     var imratio = main_media.GetImRatio();
     var scribbleData = scribble_canvas.cropandResize(poslx*imratio,posly*imratio,scale/imratio,fwidth*scale,fheight*scale,scribble_canvas.scribblecanvas);
     var origIm = new Image();
@@ -578,7 +586,10 @@ function Scribble_canvas(tag) {
         var Nobj = $(LM_xml).children("annotation").children("object").length;
         if (scribble_canvas.annotationid > -1) Nobj = scribble_canvas.annotationid;
         var imagname = main_media.GetFileInfo().GetImName();
-        imagname = imagname.substr(0, imagname.length-4);
+          imagname = imagname.substr(0, imagname.length-4);
+          if (imagname.charAt(imagname.length-1)=="."){
+              imagname = imagname.substr(0, imagname.length-1);
+          }
         scribble_canvas.save(scribbledataURL, imagname+'_scribble_'+Nobj+'.png', url, null);
       }
     }
@@ -593,7 +604,10 @@ function Scribble_canvas(tag) {
       console.log(scribble_canvas.annotationid);
       if (scribble_canvas.annotationid > -1) Nobj = scribble_canvas.annotationid;
       var imagname = main_media.GetFileInfo().GetImName();
-      imagname = imagname.substr(0, imagname.length-4);
+        imagname = imagname.substr(0, imagname.length-4);
+        if (imagname.charAt(imagname.length-1)=="."){
+            imagname = imagname.substr(0, imagname.length-1);
+        }
       var name = imagname+'_mask_'+Nobj+'.png';
       scribble_canvas.save(saveCanvas.toDataURL("image/png"),name, url, null);
     } 
@@ -790,7 +804,8 @@ function LMplot(xml,imagename) {
       // Draw polygon:
       var attr = 'fill="none" stroke="' + HashObjectColor(name) + '" stroke-width="4"';
       var scale = 1;
-      DrawPolygon('myCanvas_bg',X,Y,name,attr,scale);
+      var user_name = LMgetObjectField(LM_xml, this.annot_id, 'user_name');
+      DrawPolygonNew('myCanvas_bg',X,Y,name,attr,scale,user_name);
     }
   }
 

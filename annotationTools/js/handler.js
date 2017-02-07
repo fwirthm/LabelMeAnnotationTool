@@ -105,6 +105,17 @@ function handler() {
       
       // Pointer to object:
       
+        //boolean flag which is set true if a attribute was changed
+      changed = false;
+        
+        if (LMgetObjectField(LM_xml, obj_ndx, "name") != new_name) changed = true;
+        if (LMgetObjectField(LM_xml, obj_ndx, "attributes") != new_attributes) changed = true;
+        if (LMgetObjectField(LM_xml, obj_ndx, "pose") != new_pose) changed = true;
+        if (LMgetObjectField(LM_xml, obj_ndx, "occluded") != new_occluded) changed = true;
+        if (LMgetObjectField(LM_xml, obj_ndx, "truncated") != new_truncated) changed = true;
+        if (LMgetObjectField(LM_xml, obj_ndx, "difficult") != new_difficult) changed = true;
+        
+        
       // Set fields:
       LMsetObjectField(LM_xml, obj_ndx, "name", new_name);
       LMsetObjectField(LM_xml, obj_ndx, "automatic", "0");
@@ -117,6 +128,33 @@ function handler() {
       LMsetObjectField(LM_xml, obj_ndx, "truncated", new_truncated);
       LMsetObjectField(LM_xml, obj_ndx, "difficult", new_difficult);
       
+        //console.log("anno: "+changed+"; "+editedControlPoints);
+        
+        
+        if (changed || editedControlPoints){
+            //console.log("anno: in loop");
+      
+            var Len = LM_xml.getElementsByTagName("annotation")[0].getElementsByTagName("object").length;
+            //console.log("anno:len:"+Len);
+            var thisID = -100000;
+            var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+                          ];
+        
+            for (var loopInd=0; loopInd < Len; loopInd++) {
+                thisID = LM_xml.getElementsByTagName("annotation")[0].getElementsByTagName("object")[loopInd].getElementsByTagName("id")[0].textContent;
+                //console.log("anno:id:"+loopInd);
+                if (thisID == obj_ndx){
+                    LM_xml.getElementsByTagName("annotation")[0].getElementsByTagName("object")[loopInd].getElementsByTagName("username")[0].textContent = username;
+                
+                    var dt = new Date();
+
+                    LM_xml.getElementsByTagName("annotation")[0].getElementsByTagName("object")[loopInd].getElementsByTagName("date")[0].textContent = dt.getDate()+"-"+monthNames[dt.getMonth()]+"-"+dt.getFullYear()+" "+dt.toLocaleTimeString();
+                    break;
+                }
+            }
+        }
+        
       // Write XML to server:
       WriteXML(SubmitXmlUrl,LM_xml,function(){return;});
       
@@ -124,7 +162,10 @@ function handler() {
       if(view_ObjList) {
       	RenderObjectList();
       	ChangeLinkColorFG(anno.GetAnnoID());
+          
       }
+        //(im_ratio, xp, yp)
+      //anno.DrawPolygon();
     };
     
     // Handles when the user presses the delete button in response to

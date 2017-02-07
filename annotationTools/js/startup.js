@@ -56,7 +56,13 @@ function StartupLabelMe() {
           
       // Read the XML annotation file:
       var anno_file = main_media.GetFileInfo().GetFullName();
-      anno_file = 'Annotations/' + anno_file.substr(0,anno_file.length-4) + '.xml' + '?' + Math.random();
+         var MyImname = anno_file.substr(0,anno_file.length-4);
+          
+          if (MyImname.charAt(MyImname.length-1)=="."){
+              MyImname = MyImname.substr(0, MyImname.length-1);
+          }
+          
+      anno_file = 'Annotations/' + MyImname + '.xml' + '?' + Math.random();
       ReadXML(anno_file,LoadAnnotationSuccess,LoadAnnotation404);
           
       main_media.GetFileInfo().PreFetchImage();
@@ -78,10 +84,15 @@ function LoadNewMedia(){
       function main_media_onload_helper() {
 	      // Set the image dimensions:
 	       main_media.SetImageDimensions();
+          
 
 	      // Read the XML annotation file:
 	      var anno_file = main_media.GetFileInfo().GetFullName();
-	      anno_file = 'Annotations/' + anno_file.substr(0,anno_file.length-4) + '.xml' + '?' + Math.random();
+          var MyImname = anno_file.substr(0,anno_file.length-4);
+          if (MyImname.charAt(MyImname.length-1)=="."){
+              MyImname = MyImname.substr(0, MyImname.length-1);
+          }
+	      anno_file = 'Annotations/' + MyImname + '.xml' + '?' + Math.random();
 	      ReadXML(anno_file,LoadAnnotationSuccess,LoadAnnotation404);
 	      main_media.Zoom('fitted');
 	      main_media.GetFileInfo().PreFetchImage();
