@@ -32,7 +32,10 @@ function RenderObjectList() {
   var tree = getPartsTree();
   
   // Create DIV
-  html_str += '<b>Polygons in this image ('+ NundeletedPolygons +')</b>';
+    var ImageName = main_media.GetFileInfo().im_name;
+    
+    
+  html_str += ImageName.substr(0,20)+'<br/>'+ImageName.substr(20,20)+'<br/>'+ImageName.substr(40,20)+'<br/>'+ImageName.substr(60,20)+'<br/>'+ImageName.substr(80,20)+'<br/><b>Polygons in this image ('+ NundeletedPolygons +')</b>';
   html_str += '<p style="font-size:10px;line-height:100%"><a ' +
   'onmouseover="main_canvas.ShadePolygons();" ' +
   'onmouseout="main_canvas.RenderAnnotations();"> Reveal unlabeled pixels </a></p>';

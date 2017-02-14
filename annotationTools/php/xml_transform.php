@@ -8,13 +8,13 @@
      */
     
     /**********************************
-    //include necessary function definitions
-    *********************************/
+     //include necessary function definitions
+     *********************************/
     Include ('xmlTransformFunctions.php');
     
     /**********************************
-    fetch parameter which containes the xml string
-    *********************************/
+     fetch parameter which containes the xml string
+     *********************************/
     /** contains the xml string which is specified if the Ajax request (in WriteXML()) is started */
     $XmlContent = $_POST['XmlContent'];
     
@@ -58,7 +58,7 @@
     $width = $imgSize[0];
     /** contains the height of the image*/
     $height = $imgSize[1];
-
+    
     /// @cond excludes try from the documentation
     try {
         $depth = $imgSize[channels];
@@ -76,7 +76,17 @@
      *********************************/
     
     /** contains the filehandler for the output file*/
-    $outputFile = fopen("../../AnnotationsVOC/".(string)$folder."/".(string)$filenameNoType.".xml", "w") or die("Unable to open file!");
+    
+    /*$filesize = filesize("../../AnnotationsVOC/".(string)$folder."/".(string)$filenameNoType.".xml");
+    
+    $test = fopen("../../Annotations/".(string)$folder."/test.txt", "w+");
+    fwrite($test, (string)$filesize);
+    fclose($test);*/
+    
+    
+    
+    $outputFile = fopen("../../AnnotationsVOC/".(string)$folder."/".(string)$filenameNoType.".xml", "w+") or die("Unable to open file!");
+    
     
     fwrite($outputFile, "<annotation>");
     fwrite($outputFile, "<folder>".(string)$folder."</folder>");
@@ -110,11 +120,13 @@
          for a mask: 2
          */
         
-        /** contains if the actual object is a obsolet one*/
+        /** contains the information if the actual object is a obsolet one*/
         $deleted = $obj->deleted;
+        $User = $obj->polygon->username;
+        $UserLabeled = ($User!='ClassifierPropagation');
         
         //only active bounding boxes occur in the new xml
-        if ($deleted < 1)
+        if (($deleted < 1) and $UserLabeled)
         {
             
             $name = $obj->name;
@@ -155,17 +167,17 @@
             {
                 //set type
                 $type = 1;
-            
+                
                 //initialize edges
                 $xmin = (int)100000;
                 $xmax = (int)-100000;
                 $ymin = (int)100000;
                 $ymax = (int)-100000;
-            
+                
                 //collect edges
                 foreach ($obj->polygon->pt as $p)
                 {
-                
+                    
                     if ((int)$p->x < $xmin)
                     {
                         $xmin = (int)$p->x;
@@ -174,7 +186,7 @@
                     {
                         $xmax = (int)$p->x;
                     }
-                
+                    
                     if ((int)$p->y < $ymin)
                     {
                         $ymin = (int)$p->y;
@@ -183,7 +195,7 @@
                     {
                         $ymax = (int)$p->y;
                     }
-                
+                    
                 }
             }
             //check if the object is a polygon (and not a bounding box)
@@ -244,6 +256,6 @@
     fwrite($outputFile, "<segmented>".(string)$segmented."</segmented>");
     
     fwrite($outputFile, "</annotation>");
-
+    
     fclose($outputFile);
     ?>

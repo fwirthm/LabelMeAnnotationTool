@@ -52,6 +52,11 @@ function handler() {
     };
     
     // Submits the object label in response to the edit/delete popup bubble.
+    this.AcceptEditLabel = function() {
+        accepted = true;
+        this.SubmitEditLabel();
+    }
+    
     this.SubmitEditLabel = function () {
 
       if (scribble_canvas.scribblecanvas){
@@ -105,6 +110,7 @@ function handler() {
       
       // Pointer to object:
       
+        // added by Florian Wirthmüller
         //boolean flag which is set true if a attribute was changed
       changed = false;
         
@@ -130,10 +136,11 @@ function handler() {
       
         //console.log("anno: "+changed+"; "+editedControlPoints);
         
-        
-        if (changed || editedControlPoints){
+        // added by Florian Wirthmüller
+        if (changed || editedControlPoints || accepted){
             //console.log("anno: in loop");
       
+            accepted = false;
             var Len = LM_xml.getElementsByTagName("annotation")[0].getElementsByTagName("object").length;
             //console.log("anno:len:"+Len);
             var thisID = -100000;
@@ -164,8 +171,9 @@ function handler() {
       	ChangeLinkColorFG(anno.GetAnnoID());
           
       }
-        //(im_ratio, xp, yp)
-      //anno.DrawPolygon();
+        // added by Florian Wirthmüller
+        anno.DeletePolygon();
+        anno.DrawPolygon(main_media.GetImRatio(),anno.GetPtsX(), anno.GetPtsY());
     };
     
     // Handles when the user presses the delete button in response to

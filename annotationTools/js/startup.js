@@ -209,10 +209,34 @@ function LoadAnnotation404(jqXHR,textStatus,errorThrown) {
 
 /** Annotation template does not exist for this folder, so load default */
 function LoadTemplate404(jqXHR,textStatus,errorThrown) {
-  if(jqXHR.status==404)
-    ReadXML('annotationCache/XMLTemplates/labelme.xml',LoadTemplateSuccess,function(jqXHR) {
-  alert(jqXHR.status);
-      });
+    if(jqXHR.status==404){
+      
+        console.log("xml: label me xml not here - trying to read voc xml");
+        
+        var VocXML = "AnnotationsVOC/"+main_media.GetFileInfo().GetDirName()+"/"+main_media.GetFileInfo().GetImName();
+        VocXML = VocXML.substr(0,VocXML.length-4);
+        if (VocXML.substr(VocXML.length-1)=="."){
+            VocXML = VocXML+"xml";
+        }
+        else{
+            VocXML = VocXML+".xml";
+        }
+        
+        ReadVOCXML(VocXML);
+        
+        if (!VocXmlPresent){
+            console.log("xml: voc xml is also not here - loading template");
+            ReadXML('annotationCache/XMLTemplates/labelme.xml',LoadTemplateSuccess,function(jqXHR) {alert(jqXHR.status);
+                });
+        }
+        else{
+            console.log("xml: voc xml was here");
+            VocXmlPresent=false;
+            var LabelMeXML = VocXML.replace("AnnotationsVOC","Annotations");
+            console.log("xml:"+LabelMeXML);
+            ReadXML(LabelMeXML,LoadAnnotationSuccess,LoadAnnotation404);
+        }
+    }
   else
     alert(jqXHR.status);
 }

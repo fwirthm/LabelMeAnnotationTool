@@ -10,6 +10,32 @@ function ReadXML(xml_file,SuccessFunction,ErrorFunction) {
     error: ErrorFunction
   });
     
+}
+
+function ReadVOCXML(Vocxml_file) {
+    
+    console.log("voc xml:before: "+VocXmlPresent);
+    
+    $.ajax({
+           type: "POST",
+           data: { VOCXml: Vocxml_file},
+           //dataType: "json",
+           //context: document.body,
+           url: "http://localhost/LabelMeAnnotationTool/annotationTools/php/xml_transformVOCtoLabelMe.php",
+           //success: function(){alert("ok")},
+           //error: function(){alert("error")}
+
+           //success: VOCSuccessFunction,
+           //error: ReadXML(xml_file,SuccessFunction,ErrorFunction)
+           success: function(){VocXmlPresent=true;},
+           error: function(){VocXmlPresent=false;},
+           async: false
+           });
+    
+           //success: VocXmlPresent=true,
+           //error: VocXmlPresent=false
+    
+    console.log("voc xml:after: "+VocXmlPresent);
     
 }
 

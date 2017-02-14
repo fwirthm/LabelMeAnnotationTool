@@ -270,6 +270,9 @@ function GetPopupFormEdit(anno) {
   if (video_mode) html_str += '<input type="button" value="Done" title="Press this button when you are done editing." onclick="main_media.SubmitEditObject();" tabindex="0" />';
   
   else html_str += '<input type="button" value="Done" title="Press this button when you are done editing." onclick="main_handler.SubmitEditLabel();" tabindex="0" />';
+    // Accept Annotation button:
+    html_str += '<input type="button" value="Accept" title="Press this button if you want to accept the annotation how it is." onclick="main_handler.AcceptEditLabel();" tabindex="0" />';
+    
   
   /*************************************************************/
   /*************************************************************/
